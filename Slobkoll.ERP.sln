@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slobkoll.ERP.Core", "Slobkoll.ERP.Core\Slobkoll.ERP.Core.csproj", "{B2F646AD-22F5-4355-8BD7-C831D370BA26}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slobkoll.ERP.Web", "Slobkoll.ERP.Web\Slobkoll.ERP.Web.csproj", "{54819DE3-1161-4E13-A3C7-73DAE9D80976}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B2F646AD-22F5-4355-8BD7-C831D370BA26} = {B2F646AD-22F5-4355-8BD7-C831D370BA26}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

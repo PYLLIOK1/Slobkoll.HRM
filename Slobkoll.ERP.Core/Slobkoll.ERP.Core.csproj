@@ -101,7 +101,7 @@
     <Compile Include="Repository\Implementation\SubTaskRepository.cs" />
     <Compile Include="Repository\Implementation\TaskRepository.cs" />
     <Compile Include="Repository\Implementation\UserRepository.cs" />
-    <Compile Include="Repository\Interface\CommentRepository.cs" />
+    <Compile Include="Repository\Interface\ICommentRepository.cs" />
     <Compile Include="Repository\Interface\IGroupRepository.cs" />
     <Compile Include="Repository\Interface\ISubTaskRepository.cs" />
     <Compile Include="Repository\Interface\ITaskRepository.cs" />

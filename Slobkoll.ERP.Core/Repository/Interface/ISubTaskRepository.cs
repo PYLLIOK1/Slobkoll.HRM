@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Slobkoll.ERP.Core.Repository.Interface
 {
-    interface ISubTaskRepository
+    public interface ISubTaskRepository
     {
     }
 }
