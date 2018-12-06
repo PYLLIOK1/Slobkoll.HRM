@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Slobkoll.ERP.Core
+namespace Slobkoll.ERP.Core.Repository.Interface
 {
-    public class Class1
+    interface CommentRepository
     {
     }
 }
