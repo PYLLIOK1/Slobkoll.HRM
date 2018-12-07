@@ -3,6 +3,8 @@ using Ninject.Web.Common.WebHost;
 using Slobkoll.ERP.Core;
 using Slobkoll.ERP.Core.Repository.Implementation;
 using Slobkoll.ERP.Core.Repository.Interface;
+using Slobkoll.ERP.Web.Providers.Implementation;
+using Slobkoll.ERP.Web.Providers.Interface;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -22,6 +24,9 @@ namespace Slobkoll.ERP.Web
             kernel.Bind<ITaskRepository>().To<TaskRepository>();
             kernel.Bind<ISubTaskRepository>().To<SubTaskRepository>();
             kernel.Bind<ICommentRepository>().To<CommentRepository>();
+
+            kernel.Bind<IAuthProvider>().To<AuthProvider>();
+            kernel.Bind<IAdminProvider>().To<AdminProvider>();
             return kernel;
         }
 
