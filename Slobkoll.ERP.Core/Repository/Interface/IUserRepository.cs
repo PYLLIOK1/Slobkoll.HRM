@@ -1,16 +1,11 @@
 ﻿using Slobkoll.ERP.Core.Object;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Slobkoll.ERP.Core.Repository.Interface
 {
     public interface IUserRepository
     {
         User CreateUser(User user);
-        void Usersave(User user);
         void UserAddObserver(int[] observer, User user);
         void UserAddObserved(int[] observed, User user);
         void UserAddCustomer(int[] customer, User user);

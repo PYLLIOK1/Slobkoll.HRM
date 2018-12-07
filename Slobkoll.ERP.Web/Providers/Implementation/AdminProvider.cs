@@ -2,10 +2,8 @@
 using Slobkoll.ERP.Core.Repository.Interface;
 using Slobkoll.ERP.Web.Models;
 using Slobkoll.ERP.Web.Providers.Interface;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Slobkoll.ERP.Web.Providers.Implementation
 {
@@ -25,7 +23,7 @@ namespace Slobkoll.ERP.Web.Providers.Implementation
             user = _userRepository.ListUserAll().FirstOrDefault(x => x.Login == model.Login);
             if (user == null)
             {
-               user = _userRepository.CreateUser(new User
+                user = _userRepository.CreateUser(new User
                 {
                     Login = model.Login,
                     Password = model.Password,
@@ -34,16 +32,11 @@ namespace Slobkoll.ERP.Web.Providers.Implementation
                     StatusUser = true,
                     AdminRole = false,
                 });
-                if(model.IdGroup != null)
+                if (model.IdGroup != null)
                 {
-                    var list = _groupRepository.AddInGroup(model.IdGroup, user);
-                    foreach (var item in list)
-                    {
-                        user.Group.Add(item);
-                    }
-                    _userRepository.Usersave(user);
+                    _groupRepository.AddInGroup(model.IdGroup, user);
                 }
-                if(model.UserIdObserver != null)
+                if (model.UserIdObserver != null)
                 {
                     _userRepository.UserAddObserver(model.UserIdObserver, user);
                 }
@@ -78,5 +71,44 @@ namespace Slobkoll.ERP.Web.Providers.Implementation
             IEnumerable<Group> listas = list as IEnumerable<Group>;
             return listas;
         }
+        //public bool UserEdit()
+        //{
+        //    User user = null;
+        //    user = _userRepository.LoadUser(model.Id);
+        //    if (user == null)
+        //    {
+
+        //        if (model.IdGroup != null)
+        //        {
+        //            var list = _groupRepository.AddInGroup(model.IdGroup, user);
+        //            foreach (var item in list)
+        //            {
+        //                user.Group.Add(item);
+        //            }
+        //            _userRepository.Usersave(user);
+        //        }
+        //        if (model.UserIdObserver != null)
+        //        {
+        //            _userRepository.UserAddObserver(model.UserIdObserver, user);
+        //        }
+        //        if (model.UserIdObserved != null)
+        //        {
+        //            _userRepository.UserAddObserved(model.UserIdObserved, user);
+        //        }
+        //        if (model.UserIdCustomer != null)
+        //        {
+        //            _userRepository.UserAddCustomer(model.UserIdCustomer, user);
+        //        }
+        //        if (model.UserIdPerfomers != null)
+        //        {
+        //            _userRepository.UserAddPerformer(model.UserIdPerfomers, user);
+        //        }
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
     }
 }

@@ -58,4 +58,40 @@ namespace Slobkoll.ERP.Web.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
+    public class UserEditModel
+    {
+        public int Id { get; set; }
+
+        [Required(ErrorMessage = "Введите логин")]
+        [Display(Name = "Логин*")]
+        public string Login { get; set; }
+
+        [Required(ErrorMessage = "Введите пароль")]
+        [Display(Name = "Пароль*")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Required(ErrorMessage = "Введите ФИО")]
+        [Display(Name = "ФИО*")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "Введите должность")]
+        [Display(Name = "Должность*")]
+        public string Position { get; set; }
+
+        [Display(Name = "Список групп")]
+        public int[] IdGroup { get; set; }
+
+        [Display(Name = "Список подчинненных")]
+        public int[] UserIdPerfomers { get; set; }
+
+        [Display(Name = "Список заказчиков")]
+        public int[] UserIdCustomer { get; set; }
+
+        [Display(Name = "Список наблюдаемых")]
+        public int[] UserIdObserver { get; set; }
+
+        [Display(Name = "Список наблюдателей")]
+        public int[] UserIdObserved { get; set; }
+    }
 }

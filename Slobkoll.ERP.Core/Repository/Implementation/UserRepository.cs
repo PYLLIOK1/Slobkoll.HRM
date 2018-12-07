@@ -1,7 +1,6 @@
 ﻿using NHibernate;
 using Slobkoll.ERP.Core.Object;
 using Slobkoll.ERP.Core.Repository.Interface;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,14 +24,7 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
             }
             return LoadUser(user.Id);
         }
-        public void Usersave(User user)
-        {
-            using (var transaction = _session.BeginTransaction())
-            {
-                _session.Update(user);
-                transaction.Commit();
-            }
-        }
+
 
         public void EditUser(User user)
         {
@@ -61,7 +53,7 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
         public bool Login(string login, string password)
         {
             var user = ListUserAct().First(x => x.Login == login && x.Password == password);
-            if(user != null)
+            if (user != null)
             {
                 return true;
             }
@@ -83,7 +75,7 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
             {
                 User User = ListUser.First(x => x.Id == item);
                 User.UserObserved.Add(user);
-                Usersave(User);
+                EditUser(User);
             }
         }
 
@@ -94,7 +86,7 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
             {
                 User User = ListUser.First(x => x.Id == item);
                 User.UserObserver.Add(user);
-                Usersave(User);
+                EditUser(User);
             }
         }
 
@@ -105,7 +97,7 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
             {
                 User User = ListUser.First(x => x.Id == item);
                 User.UserPerformer.Add(user);
-                Usersave(User);
+                EditUser(User);
             }
         }
 
@@ -116,7 +108,7 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
             {
                 User User = ListUser.First(x => x.Id == item);
                 User.UserCustomer.Add(user);
-                Usersave(User);
+                EditUser(User);
             }
         }
     }
