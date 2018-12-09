@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Удалить группу";
+    Layout = "~/Views/Shared/_LayoutAdminTools.cshtml";
+}
+
+<h2>Вы уверены, что хотите удалить  группу @Model.Name?</h2>
+<div>
+    <hr />
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" />
+        </div>
+    }
+</div>

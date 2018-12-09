@@ -103,12 +103,31 @@ namespace Slobkoll.ERP.Web.Controllers
         }
 
         [HttpGet]
+        public ActionResult UserDetails(int Id)
+        {
+            var user = _adminProvider.UserLoad(Id);
+            UserDetailModel model = new UserDetailModel
+            {
+                Id = Id,
+                Name = user.Name,
+                Login = user.Login,
+                Position = user.Position,
+                Group = user.Group,
+                UserCustomer = user.UserCustomer,
+                UserObserved = user.UserObserved,
+                UserObserver = user.UserObserver,
+                UserPerfomer = user.UserPerformer
+            };
+            return View(model);
+        }
+
+
+        [HttpGet]
         public ActionResult GroupIndex()
         {
             var model = _adminProvider.ListGroup();
             return View(model);
         }
-
         [HttpGet]
         public ActionResult GroupCreate()
         {
@@ -134,5 +153,73 @@ namespace Slobkoll.ERP.Web.Controllers
                 return View(model);
             }
         }
+        [HttpGet]
+        public ActionResult GroupEdit(int Id)
+        {
+            Group group = _adminProvider.GroupLoad(Id);
+            GroupEditModel edit = new GroupEditModel
+            {
+                Name = group.Name
+            };
+            List<int> listUser = new List<int>();
+            foreach (var item in group.User)
+            {
+                listUser.Add(item.Id);
+            }
+            ViewBag.Group = new MultiSelectList(_adminProvider.ListUser(), "Id", "Name", listUser);
+
+            return View(edit);
+        }
+        [HttpPost]
+        public ActionResult GroupEdit(GroupEditModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _adminProvider.GroupEdit(model);
+                return RedirectToAction("GroupIndex");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Ошибка введенных данных");
+                return View(model);
+            }
+        }
+        [HttpGet]
+        public ActionResult GroupDelete(int Id)
+        {
+            Group group = _adminProvider.GroupLoad(Id);
+            GroupDeleteModel delete = new GroupDeleteModel
+            {
+                Name = group.Name
+            };
+            return View(delete);
+        }
+        [HttpPost]
+        public ActionResult GroupDelete(GroupDeleteModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _adminProvider.GroupDelete(model);
+                return RedirectToAction("GroupIndex");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Ошибка введенных данных");
+                return View(model);
+            }
+        }
+        [HttpGet]
+        public ActionResult GroupDetails(int Id)
+        {
+            var group = _adminProvider.GroupLoad(Id);
+            GroupDetailsModel model = new GroupDetailsModel
+            {
+                Id = Id,
+                Name = group.Name,
+                GroupUser = group.User
+            };
+            return View(model);
+        }
     }
 }
+

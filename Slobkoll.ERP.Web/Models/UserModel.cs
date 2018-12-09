@@ -103,4 +103,32 @@ namespace Slobkoll.ERP.Web.Models
         [Display(Name = "Список наблюдаемых")]
         public int[] UserIdObserved { get; set; }
     }
+
+    public class UserDetailModel
+    {
+        public int Id { get; set; }
+        [Display(Name = "Логин*")]
+        public string Login { get; set; }
+
+        [Display(Name = "ФИО*")]
+        public string Name { get; set; }
+
+        [Display(Name = "Должность*")]
+        public string Position { get; set; }
+
+        [Display(Name = "Список групп")]
+        public IList<Group> Group { get; set; }
+
+        [Display(Name = "Список подчинненных")]
+        public IList<User> UserPerfomer { get; set; }
+
+        [Display(Name = "Список заказчиков")]
+        public IList<User> UserCustomer { get; set; }
+
+        [Display(Name = "Список наблюдателей")]
+        public IList<User> UserObserver { get; set; }
+
+        [Display(Name = "Список наблюдаемых")]
+        public IList<User> UserObserved { get; set; }
+    }
 }

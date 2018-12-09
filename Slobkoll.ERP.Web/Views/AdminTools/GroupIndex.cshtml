@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Список групп";
+    Layout = "~/Views/Shared/_LayoutAdminTools.cshtml";
 }
 
 <h2>Список Групп</h2>
@@ -10,7 +11,6 @@
 <table class="table">
     <tr>
         <th>Название</th>
-        <th>Список участников</th>
         <th></th>
     </tr>
 
@@ -20,13 +20,8 @@
             <p>@item.Name</p>
         </td>
         <td>
-            @foreach (var itemgroup in item.User)
-            {
-                <p>@itemgroup.Name</p>
-            }
-        </td>
-        <td>
-            @Html.ActionLink("Редактировать", "GroupEdit", new { id = item.Id })
+            @Html.ActionLink("Редактировать", "GroupEdit", new { id = item.Id }) |
+            @Html.ActionLink("Детали", "GroupDetails", new { id = item.Id })
         </td>
     </tr>
 }

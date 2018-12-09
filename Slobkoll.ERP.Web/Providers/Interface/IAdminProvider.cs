@@ -12,6 +12,9 @@ namespace Slobkoll.ERP.Web.Providers.Interface
         IEnumerable<Group> ListGroup();
         IEnumerable<User> ListToUser();
         User UserLoad(int id);
+        Group GroupLoad(int id);
         void UserEdit(UserEditModel model);
+        void GroupEdit(GroupEditModel model);
+        void GroupDelete(GroupDeleteModel model);
     }
 }

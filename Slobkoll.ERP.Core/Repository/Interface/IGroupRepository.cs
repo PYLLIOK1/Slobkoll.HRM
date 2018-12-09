@@ -12,5 +12,6 @@ namespace Slobkoll.ERP.Core.Repository.Interface
         void EditGroup(Group group);
         void DeleteGroup(Group group);
         void ClearGroup(User user);
+        Group LoadGroup(int id);
     }
 }

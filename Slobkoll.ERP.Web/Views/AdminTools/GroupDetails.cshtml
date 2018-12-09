@@ -1,0 +1,42 @@
+﻿@model Slobkoll.ERP.Web.Models.GroupDetailsModel
+
+@{
+    ViewBag.Title = "Детали о группе";
+    Layout = "~/Views/Shared/_LayoutAdminTools.cshtml";
+    var list = Model.GroupUser;
+    foreach (var item in list)
+    {
+        item.Name = item.Name + " " + item.Position;
+    }
+}
+
+<h2>Детали о группе</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.GroupUser)
+        </dt>
+
+        <dd>
+            @foreach (var item in list)
+            {
+                <hr />
+                @item.Name
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "GroupEdit", new { id = Model.Id }) |
+    @Html.ActionLink("Удалить", "GroupDelete", new { id = Model.Id }) |
+    @Html.ActionLink("Назад", "GroupIndex")
+</p>

@@ -110,6 +110,5 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
                 EditUser(User);
             }
         }
-
     }
 }

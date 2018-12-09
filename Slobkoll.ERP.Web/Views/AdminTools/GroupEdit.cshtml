@@ -1,11 +1,11 @@
-﻿@model Slobkoll.ERP.Web.Models.GroupCreateModel
+﻿@model Slobkoll.ERP.Web.Models.GroupEditModel
 
 @{
-    ViewBag.Title = "Создание группы";
+    ViewBag.Title = "Редактирование группы";
     Layout = "~/Views/Shared/_LayoutAdminTools.cshtml";
 }
 
-<h2>Создание группы</h2>
+<h2>Редактирование группы</h2>
 
 @using (Html.BeginForm())
 {
@@ -14,6 +14,7 @@
 <div class="form-horizontal">
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
     <div class="form-group">
         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -25,14 +26,14 @@
     <div class="form-group">
         @Html.LabelFor(model => model.GroupUser, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.ListBoxFor(model => model.GroupUser, ViewBag.User as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ListBoxFor(model => model.GroupUser, ViewBag.Group as MultiSelectList, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.GroupUser, "", new { @class = "text-danger" })
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Создать" class="btn btn-default" />
+            <input type="submit" value="Сохранить" class="btn btn-default" />
         </div>
     </div>
 </div>

@@ -1,0 +1,105 @@
+﻿@model Slobkoll.ERP.Web.Models.UserDetailModel
+
+@{
+    ViewBag.Title = "Детали о пользователе";
+    Layout = "~/Views/Shared/_LayoutAdminTools.cshtml";
+    var list = Model.Group;
+    var listCus = Model.UserCustomer;
+    var listPer = Model.UserPerfomer;
+    var listObs = Model.UserObserver;
+    var listObsd = Model.UserObserved;
+    foreach (var itemObsd in listObsd)
+    {
+        itemObsd.Name = itemObsd.Name + " " + itemObsd.Position;
+    }
+}
+
+<h2>Детали о пользователе</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Login)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Login)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Position)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Position)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Group)
+        </dt>
+
+        <dd>
+            @foreach (var listitem in list)
+            {
+                <hr />
+                @listitem.Name
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserCustomer)
+        </dt>
+
+        <dd>
+            @foreach (var listCusitem in listCus)
+            {
+                <hr />
+                @listCusitem.Name
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserPerfomer)
+        </dt>
+
+        <dd>
+            @foreach (var listPeritem in listPer)
+            {
+                <hr />
+                @listPeritem.Name
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserObserver)
+        </dt>
+
+        <dd>
+            @foreach (var listObsitem in listObs)
+            {
+                <hr />
+                @listObsitem.Name
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserObserved)
+        </dt>
+
+        <dd>
+            @foreach (var listObsditem in listObsd)
+            {
+                <hr />
+                @listObsditem.Name
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "UserEdit", new { id = Model.Id }) |
+    @Html.ActionLink("Назад", "UserIndex")
+</p>

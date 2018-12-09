@@ -80,5 +80,10 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
                 EditGroup(item);
             }
         }
+
+        public Group LoadGroup(int id)
+        {
+            return _session.Load<Group>(id);
+        }
     }
 }

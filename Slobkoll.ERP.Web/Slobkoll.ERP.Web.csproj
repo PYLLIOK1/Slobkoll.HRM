@@ -190,16 +190,21 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdminTools.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\AdminTools\UserCreate.cshtml" />
-    <Content Include="Views\AdminTools\UserIndex.cshtml" />
     <Content Include="Views\AdminTools\UserEdit.cshtml" />
     <Content Include="Views\AdminTools\GroupCreate.cshtml" />
     <Content Include="Views\AdminTools\GroupIndex.cshtml" />
+    <Content Include="Views\AdminTools\GroupEdit.cshtml" />
+    <Content Include="Views\AdminTools\GroupDelete.cshtml" />
+    <Content Include="Views\AdminTools\GroupDetails.cshtml" />
+    <Content Include="Views\AdminTools\UserDetails.cshtml" />
+    <Content Include="Views\Shared\_LayoutAccount.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\AdminTools\UserIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

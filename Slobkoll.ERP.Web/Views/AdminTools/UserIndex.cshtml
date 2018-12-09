@@ -1,7 +1,8 @@
 ﻿@{
     ViewBag.Title = "Список пользователей";
+    Layout = "~/Views/Shared/_LayoutAdminTools.cshtml";
 }
-
+<h2>Список пользователей</h2>
 <p>
     @Html.ActionLink("Создать нового пользователя", "UserCreate")
 </p>
@@ -10,11 +11,6 @@
         <th>Имя</th>
         <th>Должность</th>
         <th>статус</th>
-        <th>Группы</th>
-        <th>Заказчики</th>
-        <th>Подчиненные</th>
-        <th>Наблюдимый</th>
-        <th>Наблюдает</th>
         <th></th>
     </tr>
 
@@ -38,37 +34,8 @@
                 }
             </td>
             <td>
-                @foreach (var itemgroup in item.Group)
-                {
-                    <p>@itemgroup.Name</p>
-                }
-            </td>
-            <td>
-                @foreach (var itemCustomer in item.UserCustomer)
-                {
-                    <p>@itemCustomer.Name</p>
-                }
-            </td>
-            <td>
-                @foreach (var itemPerfomer in item.UserPerformer)
-                {
-                    <p>@itemPerfomer.Name</p>
-                }
-            </td>
-            <td>
-                @foreach (var itemObserver in item.UserObserver)
-                {
-                    <p>@itemObserver.Name</p>
-                }
-            </td>
-            <td>
-                @foreach (var itemObserved in item.UserObserved)
-                {
-                    <p>@itemObserved.Name</p>
-                }
-            </td>
-            <td>
-                @Html.ActionLink("Редактирование", "UserEdit", new { id = item.Id })
+                @Html.ActionLink("Редактирование", "UserEdit", new { id = item.Id }) |
+                @Html.ActionLink("Детали", "UserDetails", new { id = item.Id })
             </td>
         </tr>
     }

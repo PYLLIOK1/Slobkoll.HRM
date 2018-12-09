@@ -2,8 +2,9 @@
 
 @{
     ViewBag.Title = "Редактирование пользователя";
+    Layout = "~/Views/Shared/_LayoutAdminTools.cshtml";
 }
-
+<h2>Редактирование пользователя</h2>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
