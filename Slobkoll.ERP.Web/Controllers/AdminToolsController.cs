@@ -1,9 +1,8 @@
-﻿using Slobkoll.ERP.Web.Models;
+﻿using Slobkoll.ERP.Core.Object;
+using Slobkoll.ERP.Web.Models;
 using Slobkoll.ERP.Web.Providers.Interface;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Slobkoll.ERP.Web.Controllers
@@ -11,10 +10,16 @@ namespace Slobkoll.ERP.Web.Controllers
     public class AdminToolsController : Controller
     {
         private readonly IAdminProvider _adminProvider;
-
         public AdminToolsController(IAdminProvider adminProvider)
         {
             _adminProvider = adminProvider;
+        }
+
+        [HttpGet]
+        public ActionResult UserIndex()
+        {
+            var model = _adminProvider.ListToUser();
+            return View(model);
         }
 
         [HttpGet]
@@ -30,7 +35,7 @@ namespace Slobkoll.ERP.Web.Controllers
             if (ModelState.IsValid)
                 if (_adminProvider.UserCreate(model))
                 {
-                    return RedirectToAction("UserCommunication");
+                    return RedirectToAction("UserIndex");
                 }
                 else
                 {
@@ -39,7 +44,60 @@ namespace Slobkoll.ERP.Web.Controllers
                 }
             else
             {
-                ModelState.AddModelError("", "Ошибка при регистрации");
+                ModelState.AddModelError("", "Ошибка при создание");
+                return View(model);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult UserEdit(int Id)
+        {
+            User user = _adminProvider.UserLoad(Id);
+            var listen = _adminProvider.ListUser().Where(x => x.Id != user.Id);
+            UserEditModel edit = new UserEditModel
+            {
+                Login = user.Login,
+                Password = user.Password,
+                Name = user.Name,
+                Position = user.Position,
+                AdminRole = user.AdminRole,
+                StatusUser = user.StatusUser
+            };
+            List<int> listGroup = new List<int>();
+            List<int> listPerfomer = new List<int>();
+            List<int> listObserved = new List<int>();
+
+            foreach (var item in user.UserPerformer)
+            {
+                listPerfomer.Add(item.Id);
+            }
+            ViewBag.UserPerformer = new MultiSelectList(listen, "Id", "Name", listPerfomer);
+
+            foreach (var item in user.Group)
+            {
+                listGroup.Add(item.Id);
+            }
+            ViewBag.Group = new MultiSelectList(_adminProvider.ListGroup(), "Id", "Name", listGroup);
+
+            foreach (var item in user.UserObserved)
+            {
+                listObserved.Add(item.Id);
+            }
+            ViewBag.UserObserved = new MultiSelectList(listen, "Id", "Name", listObserved);
+
+            return View(edit);
+        }
+        [HttpPost]
+        public ActionResult UserEdit(UserEditModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _adminProvider.UserEdit(model);
+                return RedirectToAction("UserIndex");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Ошибка введенных данных");
                 return View(model);
             }
         }

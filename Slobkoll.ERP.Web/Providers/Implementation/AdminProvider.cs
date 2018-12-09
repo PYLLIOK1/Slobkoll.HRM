@@ -65,50 +65,58 @@ namespace Slobkoll.ERP.Web.Providers.Implementation
             IEnumerable<User> listas = list as IEnumerable<User>;
             return listas;
         }
+        public IEnumerable<User> ListToUser()
+        {
+            var list = _userRepository.ListUserAll();
+            IEnumerable<User> listas = list as IEnumerable<User>;
+            return listas;
+        }
         public IEnumerable<Group> ListGroup()
         {
             var list = _groupRepository.ListGroup();
             IEnumerable<Group> listas = list as IEnumerable<Group>;
             return listas;
         }
-        //public bool UserEdit()
-        //{
-        //    User user = null;
-        //    user = _userRepository.LoadUser(model.Id);
-        //    if (user == null)
-        //    {
+        public User UserLoad(int id)
+        {
+            return _userRepository.LoadUser(id);
+        }
+        public void UserEdit(UserEditModel model)
+        {
+            User user = _userRepository.LoadUser(model.Id);
+            user.Login = model.Login;
+            user.Password = model.Password;
+            user.Name = model.Name;
+            user.Position = model.Position;
+            user.AdminRole = model.AdminRole;
+            user.StatusUser = model.StatusUser;
+            user.UserCustomer.Clear();
+            user.UserPerformer.Clear();
+            user.UserObserver.Clear();
+            user.UserObserved.Clear();
+            _userRepository.EditUser(user);
+            _groupRepository.ClearGroup(user);
+            if (model.IdGroup != null)
+            {
+                _groupRepository.AddInGroup(model.IdGroup, user);
+            }
+            if (model.UserIdObserver != null)
+            {
+                _userRepository.UserAddObserver(model.UserIdObserver, user);
+            }
+            if (model.UserIdObserved != null)
+            {
+                _userRepository.UserAddObserved(model.UserIdObserved, user);
+            }
+            if (model.UserIdCustomer != null)
+            {
+                _userRepository.UserAddCustomer(model.UserIdCustomer, user);
+            }
+            if (model.UserIdPerfomer != null)
+            {
+                _userRepository.UserAddPerformer(model.UserIdPerfomer, user);
+            }
 
-        //        if (model.IdGroup != null)
-        //        {
-        //            var list = _groupRepository.AddInGroup(model.IdGroup, user);
-        //            foreach (var item in list)
-        //            {
-        //                user.Group.Add(item);
-        //            }
-        //            _userRepository.Usersave(user);
-        //        }
-        //        if (model.UserIdObserver != null)
-        //        {
-        //            _userRepository.UserAddObserver(model.UserIdObserver, user);
-        //        }
-        //        if (model.UserIdObserved != null)
-        //        {
-        //            _userRepository.UserAddObserved(model.UserIdObserved, user);
-        //        }
-        //        if (model.UserIdCustomer != null)
-        //        {
-        //            _userRepository.UserAddCustomer(model.UserIdCustomer, user);
-        //        }
-        //        if (model.UserIdPerfomers != null)
-        //        {
-        //            _userRepository.UserAddPerformer(model.UserIdPerfomers, user);
-        //        }
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
+        }
     }
 }

@@ -24,10 +24,12 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
                 EditGroup(group);
             }
         }
+
         public IList<Group> ListGroup()
         {
             return _session.Query<Group>().ToList();
         }
+
         public void EditGroup(Group group)
         {
             using (var transaction = _session.BeginTransaction())
@@ -36,12 +38,32 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
                 transaction.Commit();
             }
         }
+
         public void CreateGroup(Group group)
         {
             using (var transaction = _session.BeginTransaction())
             {
                 _session.Save(group);
                 transaction.Commit();
+            }
+        }
+
+        public void DeleteGroup(Group group)
+        {
+            using (var transaction = _session.BeginTransaction())
+            {
+                _session.Delete(group);
+                transaction.Commit();
+            }
+        }
+
+        public void ClearGroup(User user)
+        {
+            List<Group> list = user.Group.ToList();
+            foreach (var item in list)
+            {
+                item.User.Remove(user);
+                EditGroup(item);
             }
         }
     }

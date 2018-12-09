@@ -195,6 +195,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\AdminTools\UserCreate.cshtml" />
+    <Content Include="Views\AdminTools\UserIndex.cshtml" />
+    <Content Include="Views\AdminTools\UserEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

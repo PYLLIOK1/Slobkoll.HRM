@@ -9,5 +9,8 @@ namespace Slobkoll.ERP.Web.Providers.Interface
         bool UserCreate(UserCreateModel model);
         IEnumerable<User> ListUser();
         IEnumerable<Group> ListGroup();
+        IEnumerable<User> ListToUser();
+        User UserLoad(int id);
+        void UserEdit(UserEditModel model);
     }
 }

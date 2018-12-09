@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Slobkoll.ERP.Core.Object;
+using Slobkoll.ERP.Core.Repository.Interface;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -40,10 +42,10 @@ namespace Slobkoll.ERP.Web.Models
         [Display(Name = "Список заказчиков")]
         public int[] UserIdCustomer { get; set; }
 
-        [Display(Name = "Список наблюдаемых")]
+        [Display(Name = "Список наблюдателей")]
         public int[] UserIdObserver { get; set; }
 
-        [Display(Name = "Список наблюдателей")]
+        [Display(Name = "Список наблюдаемых")]
         public int[] UserIdObserved { get; set; }
     }
 
@@ -58,6 +60,7 @@ namespace Slobkoll.ERP.Web.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
+
     public class UserEditModel
     {
         public int Id { get; set; }
@@ -79,19 +82,25 @@ namespace Slobkoll.ERP.Web.Models
         [Display(Name = "Должность*")]
         public string Position { get; set; }
 
+        [Display(Name = "Админ права")]
+        public bool AdminRole { get; set; }
+
+        [Display(Name = "Статус пользователя")]
+        public bool StatusUser { get; set; }
+
         [Display(Name = "Список групп")]
         public int[] IdGroup { get; set; }
 
         [Display(Name = "Список подчинненных")]
-        public int[] UserIdPerfomers { get; set; }
+        public int[] UserIdPerfomer { get; set; }
 
         [Display(Name = "Список заказчиков")]
         public int[] UserIdCustomer { get; set; }
 
-        [Display(Name = "Список наблюдаемых")]
+        [Display(Name = "Список наблюдателей")]
         public int[] UserIdObserver { get; set; }
 
-        [Display(Name = "Список наблюдателей")]
+        [Display(Name = "Список наблюдаемых")]
         public int[] UserIdObserved { get; set; }
     }
 }

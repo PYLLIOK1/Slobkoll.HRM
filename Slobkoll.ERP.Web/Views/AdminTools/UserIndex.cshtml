@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Список пользователей";
+}
+
+<table class="table">
+    <tr>
+        <th>Имя</th>
+        <th>Должность</th>
+        <th>статус</th>
+        <th>Группы</th>
+        <th>Заказчики</th>
+        <th>Подчиненные</th>
+        <th>Наблюдимый</th>
+        <th>Наблюдает</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <p>@item.Name</p>
+            </td>
+            <td>
+                <p>@item.Position</p>
+            </td>
+            <td>
+                @if (@item.StatusUser == true)
+                {
+                    <p>Активен</p>
+                }
+                else
+                {
+                    <p>Деактивен</p>
+                }
+            </td>
+            <td>
+                @foreach (var itemgroup in item.Group)
+                {
+                    <p>@itemgroup.Name</p>
+                }
+            </td>
+            <td>
+                @foreach (var itemCustomer in item.UserCustomer)
+                {
+                    <p>@itemCustomer.Name</p>
+                }
+            </td>
+            <td>
+                @foreach (var itemPerfomer in item.UserPerformer)
+                {
+                    <p>@itemPerfomer.Name</p>
+                }
+            </td>
+            <td>
+                @foreach (var itemObserver in item.UserObserver)
+                {
+                    <p>@itemObserver.Name</p>
+                }
+            </td>
+            <td>
+                @foreach (var itemObserved in item.UserObserved)
+                {
+                    <p>@itemObserved.Name</p>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Редактирование", "UserEdit", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>
