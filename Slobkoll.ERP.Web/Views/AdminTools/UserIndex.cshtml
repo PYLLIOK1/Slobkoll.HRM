@@ -2,6 +2,9 @@
     ViewBag.Title = "Список пользователей";
 }
 
+<p>
+    @Html.ActionLink("Создать нового пользователя", "UserCreate")
+</p>
 <table class="table">
     <tr>
         <th>Имя</th>
@@ -12,6 +15,7 @@
         <th>Подчиненные</th>
         <th>Наблюдимый</th>
         <th>Наблюдает</th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)

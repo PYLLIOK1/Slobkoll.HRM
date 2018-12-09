@@ -6,8 +6,9 @@ namespace Slobkoll.ERP.Core.Repository.Interface
     public interface IGroupRepository
     {
         void AddInGroup(int[] idGroup, User User);
+        void UserAddInGroup(int[] idGroup, Group group);
         IList<Group> ListGroup();
-        void CreateGroup(Group group);
+        Group CreateGroup(Group group);
         void EditGroup(Group group);
         void DeleteGroup(Group group);
         void ClearGroup(User user);

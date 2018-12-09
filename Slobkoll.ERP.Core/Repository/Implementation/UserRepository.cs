@@ -25,7 +25,6 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
             return LoadUser(user.Id);
         }
 
-
         public void EditUser(User user)
         {
             using (var transaction = _session.BeginTransaction())
@@ -111,5 +110,6 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
                 EditUser(User);
             }
         }
+
     }
 }

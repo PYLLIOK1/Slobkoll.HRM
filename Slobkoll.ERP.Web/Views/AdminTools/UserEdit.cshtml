@@ -49,7 +49,7 @@
         @Html.LabelFor(model => model.AdminRole, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <div class="checkbox">
-                @Html.EditorFor(model => model.AdminRole)
+                @Html.EditorFor(model => model.AdminRole, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.AdminRole, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -59,7 +59,7 @@
         @Html.LabelFor(model => model.StatusUser, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <div class="checkbox">
-                @Html.EditorFor(model => model.StatusUser)
+                @Html.EditorFor(model => model.StatusUser, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.StatusUser, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -68,7 +68,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.UserIdPerfomer, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.ListBoxFor(model => model.UserIdPerfomer, ViewBag.UserPerformer as MultiSelectList)
+            @Html.ListBoxFor(model => model.UserIdPerfomer, ViewBag.UserPerformer as MultiSelectList, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.UserIdPerfomer, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -76,7 +76,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.UserIdObserved, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.ListBoxFor(model => model.UserIdObserved, ViewBag.UserObserved as MultiSelectList)
+            @Html.ListBoxFor(model => model.UserIdObserved, ViewBag.UserObserved as MultiSelectList, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.UserIdObserved, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -84,7 +84,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.IdGroup, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.ListBoxFor(model => model.IdGroup, ViewBag.Group as MultiSelectList)
+            @Html.ListBoxFor(model => model.IdGroup, ViewBag.Group as MultiSelectList, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.IdGroup, "", new { @class = "text-danger" })
         </div>
     </div>

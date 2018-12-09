@@ -118,5 +118,28 @@ namespace Slobkoll.ERP.Web.Providers.Implementation
             }
 
         }
+
+
+        public bool GroupCreate(GroupCreateModel model)
+        {
+            Group group = null;
+            group = _groupRepository.ListGroup().FirstOrDefault(x => x.Name == model.Name);
+            if (group == null)
+            {
+                group = _groupRepository.CreateGroup(new Group
+                {
+                    Name = model.Name
+                });
+                if (model.GroupUser != null)
+                {
+                    _groupRepository.UserAddInGroup(model.GroupUser, group);
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

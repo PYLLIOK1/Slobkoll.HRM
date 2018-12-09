@@ -101,5 +101,38 @@ namespace Slobkoll.ERP.Web.Controllers
                 return View(model);
             }
         }
+
+        [HttpGet]
+        public ActionResult GroupIndex()
+        {
+            var model = _adminProvider.ListGroup();
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult GroupCreate()
+        {
+            ViewBag.User = new SelectList(_adminProvider.ListUser(), "Id", "Name");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult GroupCreate(GroupCreateModel model)
+        {
+            if (ModelState.IsValid)
+                if (_adminProvider.GroupCreate(model))
+                {
+                    return RedirectToAction("GroupIndex");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Пользователь с таким логином уже существует");
+                    return View(model);
+                }
+            else
+            {
+                ModelState.AddModelError("", "Ошибка при создание");
+                return View(model);
+            }
+        }
     }
 }

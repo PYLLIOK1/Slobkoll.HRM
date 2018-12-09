@@ -7,6 +7,7 @@ namespace Slobkoll.ERP.Web.Providers.Interface
     public interface IAdminProvider
     {
         bool UserCreate(UserCreateModel model);
+        bool GroupCreate(GroupCreateModel model);
         IEnumerable<User> ListUser();
         IEnumerable<Group> ListGroup();
         IEnumerable<User> ListToUser();

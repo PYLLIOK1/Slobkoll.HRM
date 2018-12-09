@@ -150,6 +150,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\Implementation\AdminProvider.cs" />
@@ -197,6 +198,8 @@
     <Content Include="Views\AdminTools\UserCreate.cshtml" />
     <Content Include="Views\AdminTools\UserIndex.cshtml" />
     <Content Include="Views\AdminTools\UserEdit.cshtml" />
+    <Content Include="Views\AdminTools\GroupCreate.cshtml" />
+    <Content Include="Views\AdminTools\GroupIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

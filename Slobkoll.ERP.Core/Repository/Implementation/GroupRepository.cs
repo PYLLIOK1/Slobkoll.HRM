@@ -9,9 +9,11 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
     public class GroupRepository : IGroupRepository
     {
         private readonly ISession _session;
-        public GroupRepository(ISession session)
+        private readonly IUserRepository _userRepository;
+        public GroupRepository(ISession session, IUserRepository userRepository)
         {
             _session = session;
+            _userRepository = userRepository;
         }
 
         public void AddInGroup(int[] idGroup, User user)
@@ -20,6 +22,17 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
             foreach (var item in idGroup)
             {
                 Group group = list.First(x => x.Id == item);
+                group.User.Add(user);
+                EditGroup(group);
+            }
+        }
+
+        public void UserAddInGroup(int[] idUser, Group group)
+        {
+            List<User> list = _userRepository.ListUserAct().ToList();
+            foreach (var item in idUser)
+            {
+                User user = list.First(x => x.Id == item);
                 group.User.Add(user);
                 EditGroup(group);
             }
@@ -39,13 +52,14 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
             }
         }
 
-        public void CreateGroup(Group group)
+        public Group CreateGroup(Group group)
         {
             using (var transaction = _session.BeginTransaction())
             {
                 _session.Save(group);
                 transaction.Commit();
             }
+            return group;
         }
 
         public void DeleteGroup(Group group)
