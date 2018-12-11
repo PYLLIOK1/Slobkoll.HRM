@@ -38,6 +38,12 @@ namespace Slobkoll.ERP.Core.Mapping
                 .ParentKeyColumn("UserID")
                 .ChildKeyColumn("GroupID");
 
+            HasManyToMany(x => x.GroupPerformer)
+                .Cascade.All()
+                .Inverse().Table("User_GroupPerfomer")
+                .ParentKeyColumn("UserID")
+                .ChildKeyColumn("GroupIDPerfomer");
+
             HasManyToMany(x => x.UserObserved)
                 .Cascade.All()
                 .ParentKeyColumn("UserObservedid")

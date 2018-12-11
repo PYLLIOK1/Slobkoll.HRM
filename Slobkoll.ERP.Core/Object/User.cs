@@ -66,6 +66,16 @@ namespace Slobkoll.ERP.Core.Object
             set { userPerformer = value; }
         }
 
+        private IList<Group> groupPerformer;
+        /// <summary>
+        /// список групп которым может дать задачи
+        /// </summary>
+        public virtual IList<Group> GroupPerformer
+        {
+            get { return groupPerformer ?? (groupPerformer = new List<Group>()); }
+            set { groupPerformer = value; }
+        }
+
         private IList<User> userCustomer;
         /// <summary>
         /// Кто может дать задание

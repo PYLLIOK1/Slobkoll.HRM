@@ -23,5 +23,16 @@ namespace Slobkoll.ERP.Core.Object
             get { return user ?? (user = new List<User>()); }
             set { user = value; }
         }
+
+        private IList<User> userPerformer;
+        /// <summary>
+        /// список групп которым может дать задачи
+        /// </summary>
+        public virtual IList<User> UserPerformer
+        {
+            get { return userPerformer ?? (userPerformer = new List<User>()); }
+            set { userPerformer = value; }
+        }
+
     }
 }

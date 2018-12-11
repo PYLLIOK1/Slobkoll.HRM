@@ -24,9 +24,10 @@ namespace Slobkoll.ERP.Web
             kernel.Bind<ITaskRepository>().To<TaskRepository>();
             kernel.Bind<ISubTaskRepository>().To<SubTaskRepository>();
             kernel.Bind<ICommentRepository>().To<CommentRepository>();
-
+            kernel.Bind<IHomeProvider>().To<HomeProvider>();
             kernel.Bind<IAuthProvider>().To<AuthProvider>();
             kernel.Bind<IAdminProvider>().To<AdminProvider>();
+            
             return kernel;
         }
 

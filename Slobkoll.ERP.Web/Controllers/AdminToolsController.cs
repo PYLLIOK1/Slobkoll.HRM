@@ -21,7 +21,6 @@ namespace Slobkoll.ERP.Web.Controllers
             var model = _adminProvider.ListToUser();
             return View(model);
         }
-
         [HttpGet]
         public ActionResult UserCreate()
         {
@@ -48,7 +47,6 @@ namespace Slobkoll.ERP.Web.Controllers
                 return View(model);
             }
         }
-
         [HttpGet]
         public ActionResult UserEdit(int Id)
         {
@@ -66,33 +64,39 @@ namespace Slobkoll.ERP.Web.Controllers
             List<int> listGroup = new List<int>();
             List<int> listPerfomer = new List<int>();
             List<int> listObserved = new List<int>();
+            List<int> listPerfomerGroup = new List<int>();
+
+            foreach (var item in user.GroupPerformer)
+            {
+                listPerfomerGroup.Add(item.Id);
+            }
+            ViewBag.UserGroupPerformer = new MultiSelectList(_adminProvider.ListGroup(), "Id", "Name", listPerfomerGroup.ToArray());
 
             foreach (var item in user.UserPerformer)
             {
                 listPerfomer.Add(item.Id);
             }
-            ViewBag.UserPerformer = new MultiSelectList(listen, "Id", "Name", listPerfomer);
+            ViewBag.UserPerformer = new MultiSelectList(listen, "Id", "Name", listPerfomer.ToArray());
 
             foreach (var item in user.Group)
             {
                 listGroup.Add(item.Id);
             }
-            ViewBag.Group = new MultiSelectList(_adminProvider.ListGroup(), "Id", "Name", listGroup);
+            ViewBag.Group = new MultiSelectList(_adminProvider.ListGroup(), "Id", "Name", listGroup.ToArray());
 
             foreach (var item in user.UserObserved)
             {
                 listObserved.Add(item.Id);
             }
-            ViewBag.UserObserved = new MultiSelectList(listen, "Id", "Name", listObserved);
+            ViewBag.UserObserved = new MultiSelectList(listen, "Id", "Name", listObserved.ToArray());
 
             return View(edit);
         }
         [HttpPost]
         public ActionResult UserEdit(UserEditModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && _adminProvider.UserEdit(model))
             {
-                _adminProvider.UserEdit(model);
                 return RedirectToAction("UserIndex");
             }
             else
@@ -101,7 +105,6 @@ namespace Slobkoll.ERP.Web.Controllers
                 return View(model);
             }
         }
-
         [HttpGet]
         public ActionResult UserDetails(int Id)
         {
@@ -116,7 +119,8 @@ namespace Slobkoll.ERP.Web.Controllers
                 UserCustomer = user.UserCustomer,
                 UserObserved = user.UserObserved,
                 UserObserver = user.UserObserver,
-                UserPerfomer = user.UserPerformer
+                UserPerfomer = user.UserPerformer,
+                UserIdPerfomerGroup = user.GroupPerformer
             };
             return View(model);
         }
@@ -166,16 +170,15 @@ namespace Slobkoll.ERP.Web.Controllers
             {
                 listUser.Add(item.Id);
             }
-            ViewBag.Group = new MultiSelectList(_adminProvider.ListUser(), "Id", "Name", listUser);
+            ViewBag.Group = new MultiSelectList(_adminProvider.ListUser(), "Id", "Name", listUser.ToArray());
 
             return View(edit);
         }
         [HttpPost]
         public ActionResult GroupEdit(GroupEditModel model)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && _adminProvider.GroupEdit(model))
             {
-                _adminProvider.GroupEdit(model);
                 return RedirectToAction("GroupIndex");
             }
             else

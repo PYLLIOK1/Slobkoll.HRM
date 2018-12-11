@@ -8,7 +8,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body>
+<body style="height:100vh;">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -20,26 +20,24 @@
                 @Html.ActionLink("Slobkoll ERP", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Пользователи", "UserIndex", "AdminTools")</li>
-                    <li>@Html.ActionLink("Группы", "GroupIndex", "AdminTools")</li>
-                </ul>
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container">
         @RenderBody()
         <hr />
-        <footer>
-            <p>
-                &copy; @DateTime.Now.Year – КОГПОБУ "Слободской колледж
-                педагогики и социальных отношений". Все права защищены.
-            </p>
-        </footer>
     </div>
 
+    <footer class="container">
+        <p>
+            &copy; @DateTime.Now.Year - КОГПОБУ "Слободской колледж
+            педагогики и социальных отношений". Все права защищены.
+        </p>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/Myscripts")
     @RenderSection("scripts", required: false)
 </body>
 </html>

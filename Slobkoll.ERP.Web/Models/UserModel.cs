@@ -1,10 +1,6 @@
 ﻿using Slobkoll.ERP.Core.Object;
-using Slobkoll.ERP.Core.Repository.Interface;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Slobkoll.ERP.Web.Models
 {
@@ -35,6 +31,12 @@ namespace Slobkoll.ERP.Web.Models
 
         [Display(Name = "Список групп")]
         public int[] IdGroup { get; set; }
+
+        [Display(Name = "Список групп подчиненных")]
+        public int[] UserIdPerfomerGroup { get; set; }
+
+        [Display(Name = "Список групп заказчиков")]
+        public int[] UserIdCustomerGroup { get; set; }
 
         [Display(Name = "Список подчинненных")]
         public int[] UserIdPerfomers { get; set; }
@@ -91,6 +93,12 @@ namespace Slobkoll.ERP.Web.Models
         [Display(Name = "Список групп")]
         public int[] IdGroup { get; set; }
 
+        [Display(Name = "Список групп подчиненных")]
+        public int[] UserIdPerfomerGroup { get; set; }
+
+        [Display(Name = "Список групп заказчиков")]
+        public int[] UserIdCustomerGroup { get; set; }
+
         [Display(Name = "Список подчинненных")]
         public int[] UserIdPerfomer { get; set; }
 
@@ -107,13 +115,13 @@ namespace Slobkoll.ERP.Web.Models
     public class UserDetailModel
     {
         public int Id { get; set; }
-        [Display(Name = "Логин*")]
+        [Display(Name = "Логин")]
         public string Login { get; set; }
 
-        [Display(Name = "ФИО*")]
+        [Display(Name = "ФИО")]
         public string Name { get; set; }
 
-        [Display(Name = "Должность*")]
+        [Display(Name = "Должность")]
         public string Position { get; set; }
 
         [Display(Name = "Список групп")]
@@ -124,6 +132,12 @@ namespace Slobkoll.ERP.Web.Models
 
         [Display(Name = "Список заказчиков")]
         public IList<User> UserCustomer { get; set; }
+
+        [Display(Name = "Список групп подчиненных")]
+        public IList<Group> UserIdPerfomerGroup { get; set; }
+
+        [Display(Name = "Список групп заказчиков")]
+        public IList<Group> UserIdCustomerGroup { get; set; }
 
         [Display(Name = "Список наблюдателей")]
         public IList<User> UserObserver { get; set; }

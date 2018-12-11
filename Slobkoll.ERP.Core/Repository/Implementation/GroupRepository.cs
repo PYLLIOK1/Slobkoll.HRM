@@ -27,6 +27,17 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
             }
         }
 
+        public void AddInGroupPerfomer(int[] GroupPerfomer, User user)
+        {
+            List<Group> list = ListGroup().ToList();
+            foreach (var item in GroupPerfomer)
+            {
+                Group group = list.First(x => x.Id == item);
+                group.UserPerformer.Add(user);
+                EditGroup(group);
+            }
+        }
+
         public void UserAddInGroup(int[] idUser, Group group)
         {
             List<User> list = _userRepository.ListUserAct().ToList();
@@ -36,6 +47,18 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
                 group.User.Add(user);
                 EditGroup(group);
             }
+        }
+
+        public int[] GroupIdInList(int[] idGrouplist)
+        {
+            List<Group> list = ListGroup().ToList();
+            IList<int> listint = new List<int>();
+            foreach (var item in idGrouplist)
+            {
+                Group group = list.First(x => x.Id == item);
+                listint.Add(item);
+            }
+            return listint.ToArray();
         }
 
         public IList<Group> ListGroup()
@@ -77,6 +100,16 @@ namespace Slobkoll.ERP.Core.Repository.Implementation
             foreach (var item in list)
             {
                 item.User.Remove(user);
+                EditGroup(item);
+            }
+        }
+
+        public void PerfomerClearGroup(User user)
+        {
+            List<Group> list = user.GroupPerformer.ToList();
+            foreach (var item in list)
+            {
+                item.UserPerformer.Remove(user);
                 EditGroup(item);
             }
         }

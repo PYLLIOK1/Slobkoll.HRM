@@ -52,6 +52,10 @@ namespace Slobkoll.ERP.Web.Providers.Implementation
                 {
                     _userRepository.UserAddPerformer(model.UserIdPerfomers, user);
                 }
+                if (model.UserIdPerfomerGroup != null)
+                {
+                    _groupRepository.AddInGroupPerfomer(model.UserIdPerfomerGroup, user);
+                }
                 return true;
             }
             else
@@ -81,41 +85,57 @@ namespace Slobkoll.ERP.Web.Providers.Implementation
         {
             return _userRepository.LoadUser(id);
         }
-        public void UserEdit(UserEditModel model)
+        public bool UserEdit(UserEditModel model)
         {
-            User user = _userRepository.LoadUser(model.Id);
-            user.Login = model.Login;
-            user.Password = model.Password;
-            user.Name = model.Name;
-            user.Position = model.Position;
-            user.AdminRole = model.AdminRole;
-            user.StatusUser = model.StatusUser;
-            if (model.IdGroup != null)
+            User login = null;
+            login = _userRepository.ListUserAll().FirstOrDefault(x => x.Login == model.Login);
+            if (login != null)
             {
+                User user = _userRepository.LoadUser(model.Id);
+                user.Login = model.Login;
+                user.Password = model.Password;
+                user.Name = model.Name;
+                user.Position = model.Position;
+                user.AdminRole = model.AdminRole;
+                user.StatusUser = model.StatusUser;
+                _groupRepository.PerfomerClearGroup(user);
                 _groupRepository.ClearGroup(user);
-                _groupRepository.AddInGroup(model.IdGroup, user);
-            }
-            if (model.UserIdObserver != null)
-            {
                 user.UserObserver.Clear();
-                _userRepository.UserAddObserver(model.UserIdObserver, user);
-            }
-            if (model.UserIdObserved != null)
-            {
                 user.UserObserved.Clear();
-                _userRepository.UserAddObserved(model.UserIdObserved, user);
-            }
-            if (model.UserIdCustomer != null)
-            {
                 user.UserCustomer.Clear();
-                _userRepository.UserAddCustomer(model.UserIdCustomer, user);
-            }
-            if (model.UserIdPerfomer != null)
-            {
                 user.UserPerformer.Clear();
-                _userRepository.UserAddPerformer(model.UserIdPerfomer, user);
+                if (model.IdGroup != null)
+                {
+                    _groupRepository.AddInGroup(model.IdGroup, user);
+                }
+                if (model.UserIdObserver != null)
+                {
+                    _userRepository.UserAddObserver(model.UserIdObserver, user);
+                }
+                if (model.UserIdObserved != null)
+                {
+                    _userRepository.UserAddObserved(model.UserIdObserved, user);
+                }
+                if (model.UserIdCustomer != null)
+                {
+                    _userRepository.UserAddCustomer(model.UserIdCustomer, user);
+                }
+                if (model.UserIdPerfomer != null)
+                {  
+                    _userRepository.UserAddPerformer(model.UserIdPerfomer, user);
+                }
+                if (model.UserIdPerfomerGroup != null)
+                {  
+                    _groupRepository.AddInGroupPerfomer(model.UserIdPerfomerGroup, user);
+                }
+                _userRepository.EditUser(user);
+                return true;
             }
-            _userRepository.EditUser(user);
+            else
+            {
+                return false;
+            }
+
         }
 
 
@@ -144,16 +164,27 @@ namespace Slobkoll.ERP.Web.Providers.Implementation
         {
             return _groupRepository.LoadGroup(id);
         }
-        public void GroupEdit(GroupEditModel model)
+        public bool GroupEdit(GroupEditModel model)
         {
-            Group group = _groupRepository.LoadGroup(model.Id);
-            group.Name = model.Name;
-            group.User.Clear();
-            _groupRepository.EditGroup(group);
-            if (model.GroupUser != null)
+            Group Name = null;
+            Name = _groupRepository.ListGroup().FirstOrDefault(x => x.Name == model.Name);
+            if (Name != null)
             {
-                _groupRepository.UserAddInGroup(model.GroupUser, group);
+                Group group = _groupRepository.LoadGroup(model.Id);
+                group.Name = model.Name;
+                group.User.Clear();
+                _groupRepository.EditGroup(group);
+                if (model.GroupUser != null)
+                {
+                    _groupRepository.UserAddInGroup(model.GroupUser, group);
+                }
+                return true;
             }
+            else
+            {
+                return false;
+            }
+
         }
         public void GroupDelete(GroupDeleteModel model)
         {

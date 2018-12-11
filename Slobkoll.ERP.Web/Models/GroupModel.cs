@@ -1,9 +1,6 @@
-﻿using System;
+﻿using Slobkoll.ERP.Core.Object;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
-using Slobkoll.ERP.Core.Object;
 
 namespace Slobkoll.ERP.Web.Models
 {
@@ -19,6 +16,7 @@ namespace Slobkoll.ERP.Web.Models
     public class GroupEditModel
     {
         public int Id { get; set; }
+
         [Required(ErrorMessage = "Введите Название")]
         [Display(Name = "Название*")]
         public string Name { get; set; }
@@ -29,6 +27,7 @@ namespace Slobkoll.ERP.Web.Models
     public class GroupDeleteModel
     {
         public int Id { get; set; }
+
         public string Name { get; set; }
     }
     public class GroupDetailsModel

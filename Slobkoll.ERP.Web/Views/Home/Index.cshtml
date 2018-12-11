@@ -1,31 +1,786 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <div class="col-md-4 col-xs-12 block-left">
+        @{Html.RenderAction("ListAuthor", new { id = 1 });}
+        <table class="table table-hover table-inverse">
+            <caption class="showperfomen">Список как исполнитель <span>-</span></caption>
+            <tbody class="higperfomen">
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <p>Задача № 2200</p>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-hover table-inverse">
+            <caption class="showobserver">Список как наблюдатель <span>-</span></caption>
+            <tbody class="higobserver">
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-hover table-inverse">
+            <caption class="showarchive">Архив задач <span>-</span></caption>
+            <tbody class="higarchive">
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                            </div>
+                            <div class="col-md-12 col-xs-12">
+                                <p>Отчет по успеваемости группы</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">Ожидает проверки</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">Александр Алексеевич</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">36 часов 22 минуты</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-md-8 col-xs-12 block-right">
+        @*@RenderBody();*@
+
     </div>
 </div>

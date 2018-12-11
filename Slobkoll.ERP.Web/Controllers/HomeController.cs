@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Slobkoll.ERP.Core.Object;
+using Slobkoll.ERP.Web.Models;
+using Slobkoll.ERP.Web.Providers.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,22 +11,45 @@ namespace Slobkoll.ERP.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IHomeProvider _homeProvider;
+        public HomeController(IHomeProvider homeProvider)
+        {
+            _homeProvider = homeProvider;
+        }
+        [Authorize]
         public ActionResult Index()
         {
+            var user = _homeProvider.UserLoginSerch(User.Identity.Name);
             return View();
         }
-
-        public ActionResult About()
+        public PartialViewResult ListAuthor(int id)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return PartialView();
+        }
+        public PartialViewResult ListPerfomer(int id)
+        {
+            return PartialView();
+        }
+        public PartialViewResult ListObserver(int id)
+        {
+            return PartialView();
+        }
+        public PartialViewResult ListArchive(int id)
+        {
+            return PartialView();
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
+
+        [HttpGet]
+        public ActionResult AddTask()
+        {
+            var user = _homeProvider.UserLoginSerch(User.Identity.Name);
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddTask(TaskCreateModel model)
+        {
             return View();
         }
     }

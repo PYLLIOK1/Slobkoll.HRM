@@ -8,14 +8,22 @@ namespace Slobkoll.ERP.Core.Mapping
         public GroupMap()
         {
             Id(x => x.Id);
+
             Map(x => x.Name)
                 .Length(70)
                 .Not.Nullable();
+
             HasManyToMany(x => x.User)
                 .ParentKeyColumn("GroupID")
                 .ChildKeyColumn("UserID")
                 .Cascade.SaveUpdate()
                 .Table("Group_User");
+
+            HasManyToMany(x => x.UserPerformer)
+                .ParentKeyColumn("GroupIDPerfomer")
+                .ChildKeyColumn("UserID")
+                .Cascade.SaveUpdate()
+                .Table("User_GroupPerfomer");
         }
     }
 }

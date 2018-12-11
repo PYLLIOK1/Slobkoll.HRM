@@ -22,3 +22,15 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.block-left {
+    height: 495px;
+    float: left;
+    overflow-y: scroll;
+}
+
+
+.block-right {
+    overflow-y: scroll;
+    height: 495px;
+}

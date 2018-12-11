@@ -8,6 +8,7 @@
     var listPer = Model.UserPerfomer;
     var listObs = Model.UserObserver;
     var listObsd = Model.UserObserved;
+    var listGroupPer = Model.UserIdPerfomerGroup;
     foreach (var itemObsd in listObsd)
     {
         itemObsd.Name = itemObsd.Name + " " + itemObsd.Position;
@@ -69,6 +70,11 @@
         </dt>
 
         <dd>
+            @foreach (var listGroupPeritem in listGroupPer)
+            {
+                <hr />
+                @listGroupPeritem.Name
+            }
             @foreach (var listPeritem in listPer)
             {
                 <hr />
