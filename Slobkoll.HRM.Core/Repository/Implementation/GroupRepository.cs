@@ -118,5 +118,20 @@ namespace Slobkoll.HRM.Core.Repository.Implementation
         {
             return _session.Load<Group>(id);
         }
+
+        public IList<Group> ListGroupPerfomerSelect(int id)
+        {
+            return _userRepository.LoadUser(id).GroupPerformer.ToList();
+        }
+        public IList<User> ListUserGroup(int[] idGroups)
+        {
+            IList<User> users = null;
+            foreach (var item in idGroups)
+            {
+                Group group = LoadGroup(item);
+                users.Concat(group.UserPerformer);
+            }
+            return users;
+        }
     }
 }

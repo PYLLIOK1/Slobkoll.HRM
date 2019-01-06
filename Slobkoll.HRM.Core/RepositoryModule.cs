@@ -25,7 +25,7 @@ namespace Slobkoll.HRM.Core
                         .Mappings(m => m.FluentMappings.AddFromAssemblyOf<User>().AddFromAssemblyOf<Task>()
                         .AddFromAssemblyOf<SubTask>().AddFromAssemblyOf<Comment>()
                         .AddFromAssemblyOf<Group>())
-                        .ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(true, true, false))
+                        .ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(true, false, false))
                         .BuildConfiguration()
                         .BuildSessionFactory()
                 )

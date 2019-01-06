@@ -22,11 +22,16 @@ select,
 textarea {
     max-width: 280px;
 }
+caption{
+    text-align:center;
+}
+
 
 .block-left {
     height: 495px;
     float: left;
     overflow-y: scroll;
+    
 }
 
 

@@ -7,12 +7,15 @@
         /// </summary>
         public virtual int Id { get; set; }
 
+        /// <summary>
+        /// Номер Задачи
+        /// </summary>
         public virtual Task TaskId { get; set; }
 
         /// <summary>
-        /// Путь к файлу
+        /// файл
         /// </summary>
-        public virtual string Path { get; set; }
+        public virtual byte[] Files { get; set; }
 
         /// <summary>
         /// Название файла

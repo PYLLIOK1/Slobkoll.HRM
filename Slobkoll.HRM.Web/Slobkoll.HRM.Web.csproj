@@ -45,9 +45,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Ninject, Version=3.3.3.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.3\lib\net45\Ninject.dll</HintPath>
@@ -151,6 +148,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\GroupModel.cs" />
+    <Compile Include="Models\SubTaskModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -212,6 +210,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\AdminTools\UserIndex.cshtml" />
     <Content Include="Views\Home\ListAuthor.cshtml" />
+    <Content Include="Views\Home\AddTask.cshtml" />
+    <Content Include="Views\Home\ListPerfomer.cshtml" />
+    <Content Include="Views\Home\ListObserver.cshtml" />
+    <Content Include="Views\Home\ListArchive.cshtml" />
+    <Content Include="Views\Home\ListObserverArchive.cshtml" />
+    <Content Include="Views\AdminTools\Error.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

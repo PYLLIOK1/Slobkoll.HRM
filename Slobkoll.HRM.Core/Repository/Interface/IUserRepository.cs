@@ -16,5 +16,7 @@ namespace Slobkoll.HRM.Core.Repository.Interface
         User LoadUser(int id);
         User SelectUser(string Login);
         bool Login(string name, string password);
+        IList<User> ListUserPerfomerSelect(int id);
+        IList<User> UserSelectSubtask(int[] id);
     }
 }

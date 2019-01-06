@@ -16,5 +16,6 @@ namespace Slobkoll.HRM.Web.Providers.Interface
         Group GroupLoad(int id);
         bool GroupEdit(GroupEditModel model);
         void GroupDelete(GroupDeleteModel model);
+        bool UserAdmin(string name);
     }
 }

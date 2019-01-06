@@ -1,4 +1,6 @@
-﻿using Slobkoll.HRM.Core.Repository.Interface;
+﻿using NHibernate;
+using Slobkoll.HRM.Core.Object;
+using Slobkoll.HRM.Core.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +11,18 @@ namespace Slobkoll.HRM.Core.Repository.Implementation
 {
     public class SubTaskRepository : ISubTaskRepository
     {
+        private readonly ISession _session;
+        public SubTaskRepository(ISession session)
+        {
+            _session = session;
+        }
+        public void SubTaskCreate(SubTask subTask)
+        {
+            using (var transaction = _session.BeginTransaction())
+            {
+                _session.Save(subTask);
+                transaction.Commit();
+            }
+        }
     }
 }

@@ -16,6 +16,17 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             _groupRepository = groupRepository;
             _userRepository = userRepository;
         }
+        public bool UserAdmin(string name)
+        {
+            if(_userRepository.SelectUser(name).AdminRole == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public bool UserCreate(UserCreateModel model)
         {
@@ -65,20 +76,17 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
         }
         public IEnumerable<User> ListUser()
         {
-            var list = _userRepository.ListUserAct();
-            IEnumerable<User> listas = list as IEnumerable<User>;
+            IEnumerable<User> listas = _userRepository.ListUserAct() as IEnumerable<User>;
             return listas;
         }
         public IEnumerable<User> ListToUser()
         {
-            var list = _userRepository.ListUserAll();
-            IEnumerable<User> listas = list as IEnumerable<User>;
+            IEnumerable<User> listas = _userRepository.ListUserAll() as IEnumerable<User>;
             return listas;
         }
         public IEnumerable<Group> ListGroup()
         {
-            var list = _groupRepository.ListGroup();
-            IEnumerable<Group> listas = list as IEnumerable<Group>;
+            IEnumerable<Group> listas = _groupRepository.ListGroup() as IEnumerable<Group>;
             return listas;
         }
         public User UserLoad(int id)

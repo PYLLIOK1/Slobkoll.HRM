@@ -1,0 +1,87 @@
+﻿@model Slobkoll.HRM.Web.Models.TaskCreateModel
+
+@{
+    ViewBag.Title = "Создание задачи";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+    string day = DateTime.Now.Day.ToString();
+    if(day.Length == 1)
+    {
+        day = "0" + day;
+    }
+    string mouth = DateTime.Now.Month.ToString();
+    if (mouth.Length == 1)
+    {
+        mouth = "0" + mouth;
+    }
+    string datemin = DateTime.Now.Year.ToString() + "-" + mouth
++ "-" + day + "T" + DateTime.Now.Hour.ToString() + ":"
++ DateTime.Now.Minute.ToString();
+}
+<h2>Создание задачи</h2>
+
+@using (Html.BeginForm("AddTask", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DateTime, new { htmlAttributes = new { @type = "datetime-local", @class = "form-control", @min = datemin } })
+            @Html.ValidationMessageFor(model => model.DateTime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Выберите файл</label>
+        <div class="col-md-10">
+            <input type="file" name="File" required />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserIdPerfomers, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.ListBoxFor(model => model.UserIdPerfomers, ViewBag.User as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UserIdPerfomers, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserIdPerfomerGroup, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.ListBoxFor(model => model.UserIdPerfomerGroup, ViewBag.Group as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UserIdPerfomerGroup, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Создать" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}

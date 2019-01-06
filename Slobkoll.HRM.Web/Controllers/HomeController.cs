@@ -38,19 +38,52 @@ namespace Slobkoll.HRM.Web.Controllers
         {
             return PartialView();
         }
+        public PartialViewResult ListObserverArchive(int id)
+        {
+            return PartialView();
+        }
 
 
-
+        [Authorize]
         [HttpGet]
         public ActionResult AddTask()
         {
             var user = _homeProvider.UserLoginSerch(User.Identity.Name);
+            ViewBag.User = new SelectList(_homeProvider.SelectPerfomer(user.Id), "Id", "Name");
+            ViewBag.Group = new SelectList(_homeProvider.SelecGroupPerfomer(user.Id), "Id", "Name");
             return View();
         }
         [HttpPost]
         public ActionResult AddTask(TaskCreateModel model)
         {
-            return View();
+            var user = _homeProvider.UserLoginSerch(User.Identity.Name);
+            ViewBag.User = new SelectList(_homeProvider.SelectPerfomer(user.Id), "Id", "Name", model.UserIdPerfomers);
+            ViewBag.Group = new SelectList(_homeProvider.SelecGroupPerfomer(user.Id), "Id", "Name", model.UserIdPerfomerGroup);
+            if (ModelState.IsValid)
+            {
+                if (model.UserIdPerfomerGroup != null || model.UserIdPerfomers != null)
+                {
+                    if(model.File != null)
+                    {
+                        _homeProvider.TaskCreate(model, user);
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Файл не выбран");
+                        return View(model);
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Не выбран хоть один исполнитель");
+                    return View(model);
+                }
+            }
+            else
+            {
+                return View(model);
+            }    
         }
     }
 }

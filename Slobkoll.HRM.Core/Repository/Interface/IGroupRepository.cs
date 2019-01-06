@@ -16,5 +16,7 @@ namespace Slobkoll.HRM.Core.Repository.Interface
         Group LoadGroup(int id);
         int[] GroupIdInList(int[] idGrouplist);
         void AddInGroupPerfomer(int[] GroupPerfomer, User user);
+        IList<Group> ListGroupPerfomerSelect(int id);
+        IList<User> ListUserGroup(int[] idGroups);
     }
 }

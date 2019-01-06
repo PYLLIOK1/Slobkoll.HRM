@@ -51,7 +51,7 @@ namespace Slobkoll.HRM.Core.Repository.Implementation
 
         public bool Login(string login, string password)
         {
-            var user = ListUserAct().First(x => x.Login == login && x.Password == password);
+            var user = ListUserAct().FirstOrDefault(x => x.Login == login && x.Password == password);
             if (user != null)
             {
                 return true;
@@ -109,6 +109,21 @@ namespace Slobkoll.HRM.Core.Repository.Implementation
                 User.UserCustomer.Add(user);
                 EditUser(User);
             }
+        }
+
+        public IList<User> ListUserPerfomerSelect(int id)
+        {
+            return LoadUser(id).UserPerformer.ToList();
+        }
+        public IList<User> UserSelectSubtask(int[] id)
+        {
+            List<User> users = new List<User>();
+            foreach (var item in id)
+            {
+                User user = LoadUser(item);
+                users.Add(user);
+            }
+            return users as IList<User>;
         }
     }
 }

@@ -21,9 +21,13 @@ namespace Slobkoll.HRM.Core.Object
         public virtual string Description { get; set; }
 
         /// <summary>
-        /// Путь к файлу
+        /// Имя файла
         /// </summary>
-        public virtual string Path { get; set; }
+        public virtual string FileName { get; set; }
+        /// <summary>
+        /// файл
+        /// </summary>
+        public virtual byte[] Files { get; set; }
 
         /// <summary>
         /// Время Начала задачи

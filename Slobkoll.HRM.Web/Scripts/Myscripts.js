@@ -18,3 +18,8 @@ $('.showobserver').click(function () {
     $('.higobserver').slideToggle(200, function () {
     });
 });
+$('.showobserverarchive').click(function () {
+    $(this).find('span').text(function (_, value) { return value == '-' ? '+' : '-' });
+    $('.higobserverarchive').slideToggle(200, function () {
+    });
+});

@@ -15,11 +15,9 @@ namespace Slobkoll.HRM.Core.Mapping
                 Not.Nullable();
 
             Map(x => x.Name)
-                .Length(70)
-                .Not.Nullable();
+                .Length(70);
 
-            Map(x => x.Path)
-                .Not.Nullable();
+            Map(x => x.Files);
 
             Map(x => x.Status)
                 .Not.Nullable();

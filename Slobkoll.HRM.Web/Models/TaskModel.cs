@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Slobkoll.HRM.Web.Models
 {
@@ -17,22 +18,18 @@ namespace Slobkoll.HRM.Web.Models
         [Display(Name = "Описание")]
         public string Description { get; set; }
 
-        public string Path { get; set; }
+        [Required(ErrorMessage = "выберете дату")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy hh'/'mm }", ApplyFormatInEditMode = true )]
+        [Display(Name = "Дата Окончиния")]
+        public DateTime DateTime { get; set; }
 
-        public DateTime DateBegin { get; set; }
+        [Display(Name = "Список подчинненных")]
+        public int[] UserIdPerfomers { get; set; }
 
-        [Required(ErrorMessage = "Введите дату окончания")]
-        [Display(Name = "Дата окончания")]
-        public DateTime DateEnd { get; set; }
+        [Display(Name = "Список групп подчиненных")]
+        public int[] UserIdPerfomerGroup { get; set; }
 
-        public User Author { get; set; }
-
-        [Required(ErrorMessage = "Введите статус")]
-        [Display(Name = "Статус задачи")]
-        public string Status { get; set; }
-
-        public bool Change { get; set; }
-
-        public  IList<SubTask> SubTask { get; set; }
+        public HttpPostedFileBase File { get; set; }
     }
 }

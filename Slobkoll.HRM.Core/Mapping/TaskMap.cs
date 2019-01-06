@@ -19,13 +19,20 @@ namespace Slobkoll.HRM.Core.Mapping
                 .Length(300)
                 .Not.Nullable();
 
-            Map(x => x.Path)
+            Map(x => x.FileName)
+                .Length(100)
+                .Not.Nullable();
+
+            Map(x => x.Files)
+                .Length(int.MaxValue)
                 .Not.Nullable();
 
             Map(x => x.DateBegin)
+                .CustomSqlType("smalldatetime")
                 .Not.Nullable();
 
             Map(x => x.DateEnd)
+                .CustomSqlType("smalldatetime")
                 .Not.Nullable();
 
             Map(x => x.Status)

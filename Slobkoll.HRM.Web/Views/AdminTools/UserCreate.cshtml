@@ -58,7 +58,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.UserIdPerfomers, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.ListBoxFor(model => model.UserIdPerfomers, ViewBag.User as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ListBoxFor(model => model.UserIdPerfomers, ViewBag.UserIdPerfomers as MultiSelectList, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.UserIdPerfomers, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -66,7 +66,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.UserIdCustomer, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.ListBoxFor(model => model.UserIdCustomer, ViewBag.User as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ListBoxFor(model => model.UserIdCustomer, ViewBag.UserIdCustomer as MultiSelectList, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.UserIdCustomer, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -74,7 +74,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.UserIdObserver, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.ListBoxFor(model => model.UserIdObserver, ViewBag.User as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ListBoxFor(model => model.UserIdObserver, ViewBag.UserIdObserver as MultiSelectList, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.UserIdObserver, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -82,7 +82,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.UserIdObserved, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.ListBoxFor(model => model.UserIdObserved, ViewBag.User as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ListBoxFor(model => model.UserIdObserved, ViewBag.UserIdObserved as MultiSelectList, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.UserIdObserved, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -91,21 +91,21 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.UserIdPerfomerGroup, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.ListBoxFor(model => model.UserIdPerfomerGroup, ViewBag.Group as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ListBoxFor(model => model.UserIdPerfomerGroup, ViewBag.UserIdPerfomerGroup as MultiSelectList, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.UserIdPerfomerGroup, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.UserIdCustomerGroup, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.ListBoxFor(model => model.UserIdCustomerGroup, ViewBag.Group as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ListBoxFor(model => model.UserIdCustomerGroup, ViewBag.UserIdCustomerGroup as MultiSelectList, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.UserIdCustomerGroup, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.IdGroup, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.ListBoxFor(model => model.IdGroup, ViewBag.Group as SelectList, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ListBoxFor(model => model.IdGroup, ViewBag.IdGroup as SelectList, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.IdGroup, "", new { @class = "text-danger" })
                 </div>
             </div>
