@@ -1,8 +1,11 @@
 ﻿using Ninject;
 using Ninject.Web.Common.WebHost;
+using Quartz;
+using Quartz.Spi;
 using Slobkoll.HRM.Core;
 using Slobkoll.HRM.Core.Repository.Implementation;
 using Slobkoll.HRM.Core.Repository.Interface;
+using Slobkoll.HRM.Web.Jobs;
 using Slobkoll.HRM.Web.Providers.Implementation;
 using Slobkoll.HRM.Web.Providers.Interface;
 using System.Web.Mvc;
@@ -18,7 +21,7 @@ namespace Slobkoll.HRM.Web
             var kernel = new StandardKernel();
 
             kernel.Load(new RepositoryModule());
-
+            
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IGroupRepository>().To<GroupRepository>();
             kernel.Bind<ITaskRepository>().To<TaskRepository>();
@@ -27,7 +30,6 @@ namespace Slobkoll.HRM.Web
             kernel.Bind<IHomeProvider>().To<HomeProvider>();
             kernel.Bind<IAuthProvider>().To<AuthProvider>();
             kernel.Bind<IAdminProvider>().To<AdminProvider>();
-            
             return kernel;
         }
 
@@ -36,6 +38,7 @@ namespace Slobkoll.HRM.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            TaskCheakScheduler.Start();
             base.OnApplicationStarted();
         }
     }

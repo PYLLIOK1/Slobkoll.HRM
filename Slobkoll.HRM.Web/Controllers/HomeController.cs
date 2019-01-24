@@ -1,10 +1,5 @@
-﻿using Slobkoll.HRM.Core.Object;
-using Slobkoll.HRM.Web.Models;
+﻿using Slobkoll.HRM.Web.Models;
 using Slobkoll.HRM.Web.Providers.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Slobkoll.HRM.Web.Controllers
@@ -20,27 +15,33 @@ namespace Slobkoll.HRM.Web.Controllers
         public ActionResult Index()
         {
             var user = _homeProvider.UserLoginSerch(User.Identity.Name);
+            ViewBag.Id = user.Id;
             return View();
         }
         public PartialViewResult ListAuthor(int id)
         {
-            return PartialView();
+            var model = _homeProvider.TaskListAuthor(id);
+            return PartialView(model);
         }
         public PartialViewResult ListPerfomer(int id)
         {
-            return PartialView();
+            var model = _homeProvider.TaskListPerfomer(id);
+            return PartialView(model);
         }
         public PartialViewResult ListObserver(int id)
         {
-            return PartialView();
+            var model = _homeProvider.TaskListObserver(id);
+            return PartialView(model);
         }
         public PartialViewResult ListArchive(int id)
         {
-            return PartialView();
+            var model = _homeProvider.TaskListAuthorArchive(id);
+            return PartialView(model);
         }
         public PartialViewResult ListObserverArchive(int id)
         {
-            return PartialView();
+            var model = _homeProvider.TaskListObserverArchive(id);
+            return PartialView(model);
         }
 
 
@@ -63,7 +64,7 @@ namespace Slobkoll.HRM.Web.Controllers
             {
                 if (model.UserIdPerfomerGroup != null || model.UserIdPerfomers != null)
                 {
-                    if(model.File != null)
+                    if (model.File != null)
                     {
                         _homeProvider.TaskCreate(model, user);
                         return RedirectToAction("Index");
@@ -83,7 +84,35 @@ namespace Slobkoll.HRM.Web.Controllers
             else
             {
                 return View(model);
-            }    
+            }
+        }
+        [Authorize]
+        [HttpGet]
+        public ActionResult EditTask(int id)
+        {
+            var user = _homeProvider.UserLoginSerch(User.Identity.Name);
+            var task = _homeProvider.LoadEditTask(id);
+            if (user == task.Author)
+            {
+                return View(task);
+            }
+            else
+            {
+                return View();
+            }
+        }
+        [HttpPost]
+        public ActionResult EditTask(TaskEdit model)
+        {
+            if (ModelState.IsValid)
+            {
+                _homeProvider.TaskEdit(model);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(model);
+            }
         }
     }
 }
