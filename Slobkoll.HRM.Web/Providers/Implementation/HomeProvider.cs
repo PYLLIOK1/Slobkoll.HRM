@@ -160,7 +160,11 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                         infoauthor = true;
                     }
                 }
-                TimeSpan date = item.DateEnd - DateTime.Now;
+                TimeSpan date = new TimeSpan(0, 0, 0);
+                if (item.DateEnd > DateTime.Now)
+                {
+                    date = item.DateEnd - DateTime.Now;
+                }
                 TaskListAuthor taske = new TaskListAuthor()
                 {
                     Id = item.Id,
@@ -184,7 +188,11 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             {
 
                 SubTask sub = item.SubTask.FirstOrDefault(x => x.Performer == user);
-                TimeSpan date = item.DateEnd - DateTime.Now;
+                TimeSpan date = new TimeSpan(0, 0, 0);
+                if (item.DateEnd > DateTime.Now)
+                {
+                    date = item.DateEnd - DateTime.Now;
+                }
                 TaskListAuthor taske = new TaskListAuthor()
                 {
                     Id = item.Id,
@@ -214,7 +222,11 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                         infoauthor = true;
                     }
                 }
-                TimeSpan date = item.DateEnd - DateTime.Now;
+                TimeSpan date = new TimeSpan(0, 0, 0);
+                if (item.DateEnd > DateTime.Now)
+                {
+                    date = item.DateEnd - DateTime.Now;
+                }
                 TaskListAuthor taske = new TaskListAuthor()
                 {
                     Id = item.Id,

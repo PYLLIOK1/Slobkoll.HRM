@@ -1,5 +1,6 @@
 ﻿using Slobkoll.HRM.Web.Models;
 using Slobkoll.HRM.Web.Providers.Interface;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Slobkoll.HRM.Web.Controllers

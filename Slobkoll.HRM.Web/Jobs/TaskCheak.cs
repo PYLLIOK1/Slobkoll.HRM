@@ -1,7 +1,5 @@
 ﻿using Quartz;
 using Slobkoll.HRM.Web.Providers.Interface;
-using System.Net;
-using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace Slobkoll.HRM.Web.Jobs
@@ -17,7 +15,7 @@ namespace Slobkoll.HRM.Web.Jobs
         {
             {
                 await Task.Run(() => _jobProvider.JobTaskCheak());
-            }  
+            }
         }
     }
 }

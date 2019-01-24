@@ -1,7 +1,5 @@
 ﻿using Ninject;
 using Ninject.Web.Common.WebHost;
-using Quartz;
-using Quartz.Spi;
 using Slobkoll.HRM.Core;
 using Slobkoll.HRM.Core.Repository.Implementation;
 using Slobkoll.HRM.Core.Repository.Interface;
@@ -21,7 +19,7 @@ namespace Slobkoll.HRM.Web
             var kernel = new StandardKernel();
 
             kernel.Load(new RepositoryModule());
-            
+
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IGroupRepository>().To<GroupRepository>();
             kernel.Bind<ITaskRepository>().To<TaskRepository>();

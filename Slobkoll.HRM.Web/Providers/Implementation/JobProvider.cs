@@ -3,8 +3,6 @@ using Slobkoll.HRM.Core.Repository.Interface;
 using Slobkoll.HRM.Web.Providers.Interface;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Slobkoll.HRM.Web.Providers.Implementation
 {
@@ -20,16 +18,16 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
         public void JobTaskCheak()
         {
             IList<Task> ListTask = _taskRepository.LoadTaskAllAct();
-            if(ListTask != null)
+            if (ListTask != null)
             {
                 foreach (var item in ListTask)
                 {
-                    if(item.DateEnd <= DateTime.Now)
+                    if (item.DateEnd <= DateTime.Now)
                     {
                         bool done = true;
                         foreach (var itemsub in item.SubTask)
                         {
-                            if(itemsub.Status != "Выполнено")
+                            if (itemsub.Status != "Выполнено")
                             {
                                 done = false;
                             }
