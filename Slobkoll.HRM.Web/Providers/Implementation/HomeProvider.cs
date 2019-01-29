@@ -22,6 +22,15 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             _taskRepository = taskRepository;
             _subTaskRepository = subTaskRepository;
         }
+        public Task TaskLoad(int id)
+        {
+            return _taskRepository.TaskLoad(id);
+        }
+
+        public SubTask SubTaskLoad(int id)
+        {
+            return _subTaskRepository.SubTaskLoad(id);
+        }
 
         public IEnumerable<User> SelectPerfomer(int id)
         {
@@ -141,6 +150,17 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
         public IEnumerable<Group> SelecGroupPerfomer(int id)
         {
             return _groupRepository.ListGroupPerfomerSelect(id) as IEnumerable<Group>;
+        }
+
+        public void SubTaskEdit(int id, byte[] file, string name)
+        {
+            var model = _subTaskRepository.SubTaskLoad(id);
+            model.ChangeAuthor = true;
+            model.Status = "Ожидает проверки автора";
+            model.Files = file;
+            model.Name = name;
+            _subTaskRepository.SubTaskEdit(model);
+
         }
 
 

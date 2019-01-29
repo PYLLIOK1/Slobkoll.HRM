@@ -19,6 +19,8 @@ namespace Slobkoll.HRM.Web.Providers.Interface
         IList<TaskListAuthor> TaskListObserver(int id);
         IList<TaskListArchive> TaskListAuthorArchive(int id);
         IList<TaskListArchive> TaskListObserverArchive(int id);
-
+        Task TaskLoad(int id);
+        SubTask SubTaskLoad(int id);
+        void SubTaskEdit(int id, byte[] file, string name);
     }
 }

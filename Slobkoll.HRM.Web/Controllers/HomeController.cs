@@ -1,6 +1,8 @@
 ﻿using Slobkoll.HRM.Web.Models;
 using Slobkoll.HRM.Web.Providers.Interface;
+using System.IO;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Slobkoll.HRM.Web.Controllers
@@ -44,6 +46,20 @@ namespace Slobkoll.HRM.Web.Controllers
             var model = _homeProvider.TaskListObserverArchive(id);
             return PartialView(model);
         }
+
+
+        public ActionResult TaskAuthor(int id)
+        {
+            var model = _homeProvider.TaskLoad(id);
+            return PartialView(model);
+        }
+        public ActionResult TaskPerfomer(int id)
+        {
+            var task = _homeProvider.TaskLoad(id);
+            var model = task.SubTask.SingleOrDefault(x => x.Performer.Login == User.Identity.Name);
+            return PartialView(model);
+        }
+
 
 
         [Authorize]
@@ -114,6 +130,49 @@ namespace Slobkoll.HRM.Web.Controllers
             {
                 return View(model);
             }
+        }
+
+        [HttpPost]
+        public ActionResult AddPerfomerFile(SubTaskModelEdit model)
+        {
+            if (model.File != null)
+            {
+                byte[] File = null;
+                using (var binaryReader = new BinaryReader(model.File.InputStream))
+                {
+                    File = binaryReader.ReadBytes(model.File.ContentLength);
+                }
+                _homeProvider.SubTaskEdit(model.Id, File, Path.GetFileName(model.File.FileName));
+            }
+            return ListPerfomer(model.Id);
+        }
+
+
+
+
+        public string TaskFileDownload(int id)
+        {
+            var Task = _homeProvider.TaskLoad(id);
+            byte[] file = Task.Files;
+            Directory.CreateDirectory(Server.MapPath("/Temp/"));
+            string path = Server.MapPath("/Temp/" + Task.FileName);
+            using (FileStream fstream = new FileStream(path, FileMode.Create))
+            {
+                fstream.Write(file, 0, file.Length);
+            }
+            return Task.FileName;
+        }
+        public string SubTaskFileDownload(int id)
+        {
+            var SubTask = _homeProvider.SubTaskLoad(id);
+            byte[] file = SubTask.Files;
+            Directory.CreateDirectory(Server.MapPath("/Temp/"));
+            string path = Server.MapPath("/Temp/" + SubTask.Name);
+            using (FileStream fstream = new FileStream(path, FileMode.Create))
+            {
+                fstream.Write(file, 0, file.Length);
+            }
+            return SubTask.Name;
         }
     }
 }

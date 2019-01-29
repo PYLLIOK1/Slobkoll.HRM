@@ -43,6 +43,16 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/Myscripts")
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            $(".showauthor").click();
+            $(".showperfomen").click();
+            $(".showarchive").click();
+            $(".showobserver").click();
+            $(".showobserverarchive").click();
+        });
+    </script>
 </body>
 </html>

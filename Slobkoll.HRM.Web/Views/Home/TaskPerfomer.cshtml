@@ -1,0 +1,57 @@
+﻿<div class="col-md-12" style="margin-top:15px;">
+    <div class="col-md-3"><p><b>Автор:</b>@Model.TaskId.Author.Name</p></div>
+    <div class="col-md-9"><h4>@Model.TaskId.Name</h4></div>
+</div>
+
+<br />
+<div class="col-md-12">
+    <p><b>Описание:</b> @Model.TaskId.Description</p>
+</div>
+<br />
+<div class="col-md-12">
+    <div class="col-md-4"><p><b>Начало:</b>@Model.TaskId.DateBegin</p></div>
+    <div class="col-md-4"><button class="btn" onclick="clickauthorfile(@Model.TaskId.Id)">@Model.TaskId.FileName</button></div>
+    <div class="col-md-4"><p><b>Окончания:</b>@Model.TaskId.DateEnd</p></div>
+</div>
+<br />
+<div id="statusauthor"></div><p>
+<p><b>Статут:</b>@Model.TaskId.Status</p>
+
+
+
+
+<hr />
+
+<div class="col-md-12">
+    <div class="col-md-6"><p><b>Исполнитель:</b>@Model.Performer.Name</p></div>
+    <div class="col-md-6">
+        @if (Model.Name==null)
+        {
+            <button class="btn" disabled>Файла нету</button>
+        }
+        else
+        {
+            <button class="btn" onclick="clickperfomerfile(@Model.Id, )">@Model.Name</button>
+        }
+    </div>
+</div>
+<div class="col-md-12">
+    <p><b>Статут:</b>@Model.Status</p>
+</div>
+<div class="col-md-12">
+    @using (Ajax.BeginForm("AddPerfomerFile", "Home", new AjaxOptions() { HttpMethod="Post", Confirm="Вы уверены?", UpdateTargetId= "workspace" }, new { enctype = "multipart/form-data" }))
+
+    {
+        <div class="col-md-10">
+            <input type="hidden" name="iD" value="@Model.Id" />
+            <input type="file" name="File" />
+
+        </div>
+        <div class="col-md-2">
+            <button id="submit">Загрузить</button>
+        </div>
+
+    }
+</div>
+<hr />
+

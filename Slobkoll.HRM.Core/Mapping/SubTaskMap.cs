@@ -17,7 +17,8 @@ namespace Slobkoll.HRM.Core.Mapping
             Map(x => x.Name)
                 .Length(70);
 
-            Map(x => x.Files);
+            Map(x => x.Files)
+                .Length(int.MaxValue);
 
             Map(x => x.Status)
                 .Not.Nullable();

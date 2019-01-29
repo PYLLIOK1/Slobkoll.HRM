@@ -10,5 +10,7 @@ namespace Slobkoll.HRM.Core.Repository.Interface
     public interface ISubTaskRepository
     {
         void SubTaskCreate(SubTask subTask);
+        SubTask SubTaskLoad(int id);
+        void SubTaskEdit(SubTask subTask);
     }
 }

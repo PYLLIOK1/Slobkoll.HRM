@@ -24,5 +24,17 @@ namespace Slobkoll.HRM.Core.Repository.Implementation
                 transaction.Commit();
             }
         }
+        public void SubTaskEdit(SubTask subTask)
+        {
+            using (var transaction = _session.BeginTransaction())
+            {
+                _session.Update(subTask);
+                transaction.Commit();
+            }
+        }
+        public SubTask SubTaskLoad(int id)
+        {
+            return _session.Load<SubTask>(id);
+        }
     }
 }
