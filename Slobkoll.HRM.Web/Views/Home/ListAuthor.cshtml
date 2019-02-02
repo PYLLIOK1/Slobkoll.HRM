@@ -1,38 +1,39 @@
-﻿<table class="table table-hover table-inverse">
-    <caption class="showauthor">Список как автора <span>-</span></caption>
-    <tbody class="higauthor">
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <div class="row">
-                        <div class="col-md-2 col-xs-2 text-center">
-                            @if (item.Info)
-                            {
-                                <img src="~/Content/2.png" class="img-responsive center-block" width="30" height="30" />
-                            }
-                            else
-                            {
-                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
-                            }
-                        </div>
-                        <p id="@item.Id" class="id">Задача № @item.Id</p>
-                        <div class="col-md-12 col-xs-12">
-                            <p>@item.Name</p>
-                            <div class="row">
-                                <div class="col-md-6 col-xs-6">
-                                    <span class="left">@item.Status</span>
-                                </div>
-                                <div class="col-md-6 col-xs-6">
-                                    <span class="right">@item.Username</span>
-                                </div>
+﻿<div id="ListAuthor">
+    <table class="table table-hover table-inverse">
+        <caption class="showauthor">Список как автора <span>-</span></caption>
+        <tbody class="higauthor">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-2 text-center">
+                                @if (item.Info)
+                                {
+                                    <img id="img" src="~/Content/2.png" class="img-responsive center-block false" width="30" height="30" />
+                                }
+                                else
+                                {
+                                    <img id="img" src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                                }
                             </div>
-                            <p class="text-center">@item.Time</p>
+                            <p id="@item.Id" class="id">Задача № @item.Id</p>
+                            <div class="col-md-12 col-xs-12">
+                                <p>@item.Name</p>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="left">@item.Status</span>
+                                    </div>
+                                    <div class="col-md-6 col-xs-6">
+                                        <span class="right">@item.Username</span>
+                                    </div>
+                                </div>
+                                <p class="text-center">@item.Time</p>
+                            </div>
                         </div>
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

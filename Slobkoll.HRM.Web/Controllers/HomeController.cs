@@ -51,12 +51,14 @@ namespace Slobkoll.HRM.Web.Controllers
         public ActionResult TaskAuthor(int id)
         {
             var model = _homeProvider.TaskLoad(id);
+            model = _homeProvider.CheckAuthor(model);
             return PartialView(model);
         }
         public ActionResult TaskPerfomer(int id)
         {
             var task = _homeProvider.TaskLoad(id);
-            var model = task.SubTask.SingleOrDefault(x => x.Performer.Login == User.Identity.Name);
+            var model = task.SubTask.FirstOrDefault(x => x.Performer.Login == User.Identity.Name);
+            model = _homeProvider.CheckPerfomer(model);
             return PartialView(model);
         }
 
@@ -133,8 +135,9 @@ namespace Slobkoll.HRM.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddPerfomerFile(SubTaskModelEdit model)
+        public int AddPerfomerFile(SubTaskModelEdit model)
         {
+            var subtask = _homeProvider.SubTaskLoad(model.Id);
             if (model.File != null)
             {
                 byte[] File = null;
@@ -144,7 +147,7 @@ namespace Slobkoll.HRM.Web.Controllers
                 }
                 _homeProvider.SubTaskEdit(model.Id, File, Path.GetFileName(model.File.FileName));
             }
-            return ListPerfomer(model.Id);
+            return subtask.TaskId.Id;
         }
 
 
@@ -173,6 +176,14 @@ namespace Slobkoll.HRM.Web.Controllers
                 fstream.Write(file, 0, file.Length);
             }
             return SubTask.Name;
+        }
+
+        [HttpPost]
+        public int EditStatusPerfomer(int id, string text)
+        {
+            var subtask = _homeProvider.SubTaskLoad(id);
+            _homeProvider.SubTaskStatusEdit(id, text);
+            return subtask.TaskId.Id;
         }
     }
 }

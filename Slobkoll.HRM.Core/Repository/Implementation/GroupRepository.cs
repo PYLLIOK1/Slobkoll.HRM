@@ -125,11 +125,18 @@ namespace Slobkoll.HRM.Core.Repository.Implementation
         }
         public IList<User> ListUserGroup(int[] idGroups)
         {
-            IList<User> users = null;
+            List<User> users = null;
             foreach (var item in idGroups)
             {
                 Group group = LoadGroup(item);
-                users.Concat(group.UserPerformer);
+                if(users == null)
+                {
+                    users = new List<User>(group.User);
+                }
+                else
+                {
+                    users.Concat(group.User);
+                }  
             }
             return users;
         }

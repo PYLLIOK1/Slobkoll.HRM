@@ -9,11 +9,11 @@
                         <div class="col-md-2 col-xs-2 text-center">
                             @if (item.Info)
                             {
-                                <img src="~/Content/2.png" class="img-responsive center-block" width="30" height="30" />
+                                <img id="img" src="~/Content/2.png" class="img-responsive center-block false" width="30" height="30" />
                             }
                             else
                             {
-                                <img src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
+                                <img id="img" src="~/Content/1.png" class="img-responsive center-block" width="30" height="30" />
                             }
                         </div>
                         <p id="@item.Id" class="id">Задача № @item.Id</p>

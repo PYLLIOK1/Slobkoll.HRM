@@ -163,6 +163,45 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
 
         }
 
+        public void SubTaskStatusEdit(int Id,string status)
+        {
+            var model = _subTaskRepository.SubTaskLoad(Id);
+            model.Status = status;
+            model.ChangePerformer = true;
+            _subTaskRepository.SubTaskEdit(model);
+        }
+
+        public Task CheckAuthor(Task task)
+        {
+            foreach (var item in task.SubTask)
+            {
+                if(item.ChangeAuthor == true)
+                {
+                    item.ChangeAuthor = false;
+                    if(item.Status == "Ожидает проверки автора")
+                    {
+                        item.Status = "Ожидает действий автора";
+                    }
+                    _subTaskRepository.SubTaskEdit(item);
+                }
+            }
+            return task;
+        }
+
+        public SubTask CheckPerfomer(SubTask subTask)
+        {
+            if (subTask.ChangePerformer == true)
+            {
+                subTask.ChangePerformer = false;
+                if (subTask.Status == "Ожидает проверки исполнителем")
+                {
+                    subTask.Status = "Ожидает действий исполнителем";
+                }
+                _subTaskRepository.SubTaskEdit(subTask);
+            }
+            return subTask;
+        }
+
 
 
         public IList<TaskListAuthor> TaskListAuthor(int id)

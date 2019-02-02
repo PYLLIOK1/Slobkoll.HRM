@@ -28,11 +28,21 @@ $('.showobserverarchive').click(function () {
 $('.higauthor').children('tr').click(function () {
     var id = $(this).find('.id').attr('id');
     $('#workspace').load('TaskAuthor?id=' + id);
+    if ($(this).find('#img').hasClass('false')) {
+        $(this).find('#img').replaceWith("<img id='img' src='/Content/1.png' class='img-responsive center-block' width='30' height='30' />");
+    }
+
+
 });
 $('.higperfomen').children('tr').click(function () {
     var id = $(this).find('.id').attr('id');
     $('#workspace').load('TaskPerfomer?id=' + id);
+    if ($(this).find('#img').hasClass('false')) {
+        $(this).find('#img').replaceWith("<img id='img' src='/Content/1.png' class='img-responsive center-block' width='30' height='30' />");
+    }
 });
+
+
 $('.higarchive').children('tr').click(function () {
     var id = $(this).find('.id').attr('id');
     $("#workspace").load('@Url.Action("Home","TaskAuthor")' + '?id=' + id);
@@ -72,3 +82,20 @@ function clickperfomerfile(Id) {
         }
     });
 };
+
+function onChangeEdit(Id, text) {
+    $.ajax({
+        type: "POST",
+        url: "/Home/EditStatusPerfomer",
+        data: { 
+            Id: Id,
+            text: text
+        },
+        success: function (id) {
+            $('#workspace').load('TaskAuthor?id=' + id);
+        }
+    });
+}
+function OnSuccess(data) {
+    $('#workspace').load('TaskPerfomer?id=' + data);
+}

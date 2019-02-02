@@ -22,5 +22,8 @@ namespace Slobkoll.HRM.Web.Providers.Interface
         Task TaskLoad(int id);
         SubTask SubTaskLoad(int id);
         void SubTaskEdit(int id, byte[] file, string name);
+        SubTask CheckPerfomer(SubTask subTask);
+        Task CheckAuthor(Task task);
+        void SubTaskStatusEdit(int Id, string status);
     }
 }

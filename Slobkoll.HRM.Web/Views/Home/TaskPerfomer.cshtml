@@ -31,7 +31,7 @@
         }
         else
         {
-            <button class="btn" onclick="clickperfomerfile(@Model.Id, )">@Model.Name</button>
+            <button class="btn" onclick="clickperfomerfile(@Model.Id)">@Model.Name</button>
         }
     </div>
 </div>
@@ -39,18 +39,15 @@
     <p><b>Статут:</b>@Model.Status</p>
 </div>
 <div class="col-md-12">
-    @using (Ajax.BeginForm("AddPerfomerFile", "Home", new AjaxOptions() { HttpMethod="Post", Confirm="Вы уверены?", UpdateTargetId= "workspace" }, new { enctype = "multipart/form-data" }))
-
+    @using (Ajax.BeginForm("AddPerfomerFile","Home", null , new AjaxOptions() {  UpdateTargetId = "workspace", Confirm = "Вы уверены?", OnSuccess = "OnSuccess" }, new { enctype = "multipart/form-data" }))
     {
         <div class="col-md-10">
-            <input type="hidden" name="iD" value="@Model.Id" />
+            <input type="hidden" name="Id" value="@Model.Id" />
             <input type="file" name="File" />
-
         </div>
         <div class="col-md-2">
-            <button id="submit">Загрузить</button>
+            <input type="submit" value="Загрузить"/>
         </div>
-
     }
 </div>
 <hr />
