@@ -175,6 +175,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -188,6 +189,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.datetimepicker.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -234,6 +236,9 @@
     <Content Include="Views\AdminTools\Error.cshtml" />
     <Content Include="Views\Home\TaskAuthor.cshtml" />
     <Content Include="Views\Home\TaskPerfomer.cshtml" />
+    <Content Include="Views\Home\TaskObserver.cshtml" />
+    <Content Include="Views\Home\TaskArchive.cshtml" />
+    <Content Include="Views\Home\TaskArchiveObserver.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -61,7 +61,21 @@ namespace Slobkoll.HRM.Web.Controllers
             model = _homeProvider.CheckPerfomer(model);
             return PartialView(model);
         }
-
+        public ActionResult TaskObserver(int id)
+        {
+            var model = _homeProvider.TaskLoad(id);
+            return PartialView(model);
+        }
+        public ActionResult TaskArchive(int id)
+        {
+            var model = _homeProvider.TaskLoad(id);
+            return PartialView(model);
+        }
+        public ActionResult TaskArchiveObserver(int id)
+        {
+            var model = _homeProvider.TaskLoad(id);
+            return PartialView(model);
+        }
 
 
         [Authorize]

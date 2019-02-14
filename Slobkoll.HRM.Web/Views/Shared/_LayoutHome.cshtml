@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title – Slobkoll HRM</title>
     @Styles.Render("~/Content/css")
-    
-
+    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
 </head>
 <body style="height:100vh; min-height:100vh;">
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -45,6 +44,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/Myscripts")
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
     @RenderSection("scripts", required: false)
     <script>
         $(document).ready(function () {
@@ -52,7 +52,10 @@
             $(".showperfomen").click();
             $(".showarchive").click();
             $(".showobserver").click();
-            $(".showobserverarchive").click();
+            $(".datetimepicker").datetimepicker({
+                format: 'd.m.Y H:i',
+                lang: "ru",
+            })
         });
     </script>
 </body>

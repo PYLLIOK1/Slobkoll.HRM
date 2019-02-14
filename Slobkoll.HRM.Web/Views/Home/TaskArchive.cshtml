@@ -1,0 +1,42 @@
+﻿<div class="col-md-12" style="margin-top:15px;">
+    <div class="col-md-3 col-xs-3"><p><b>Автор:</b>@Model.Author.Name</p></div>
+    <div class="col-md-7 col-xs-9"><h4>@Model.Name</h4></div>
+</div>
+
+<br />
+<div class="col-md-12 col-xs-12">
+    <p><b>Описание:</b> @Model.Description</p>
+</div>
+<br />
+<div class="col-md-12">
+    <div class="col-md-4 col-xs-4"><p><b>Начало:</b>@Model.DateBegin</p></div>
+    <div class="col-md-4 col-xs-4"><button class="btn" onclick="clickauthorfile(@Model.Id)">Скачать</button></div>
+    <div class="col-md-4 col-xs-4"><p><b>Окончания:</b>@Model.DateEnd</p></div>
+</div>
+<br />
+<p>
+    <b>Статус задачи:</b>@Model.Status
+</p>
+
+
+<hr />
+@foreach (var item in Model.SubTask)
+{
+    <div class="col-md-12 col-xs-12">
+        <div class="col-md-4 col-xs-4"><p><b>Исполнитель:</b>@item.Performer.Name</p></div>
+        <div class="col-md-4 col-xs-4">
+            @if (item.Name == null)
+            {
+                <button class="btn" disabled>Файла нету</button>
+            }
+            else
+            {
+                <button class="btn" onclick="clickperfomerfile(@item.Id)">Скачать</button>
+            }
+        </div>
+        <div class="col-md-4 col-xs-4">
+            <p><b>Статут:</b>@item.Status</p>
+        </div>
+    </div>
+    <hr />
+}

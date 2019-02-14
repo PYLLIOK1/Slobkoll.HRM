@@ -10,7 +10,7 @@
 <br />
 <div class="col-md-12">
     <div class="col-md-4"><p><b>Начало:</b>@Model.TaskId.DateBegin</p></div>
-    <div class="col-md-4"><button class="btn" onclick="clickauthorfile(@Model.TaskId.Id)">@Model.TaskId.FileName</button></div>
+    <div class="col-md-4"><button class="btn" onclick="clickauthorfile(@Model.TaskId.Id)">Скачать</button></div>
     <div class="col-md-4"><p><b>Окончания:</b>@Model.TaskId.DateEnd</p></div>
 </div>
 <br />
@@ -31,7 +31,7 @@
         }
         else
         {
-            <button class="btn" onclick="clickperfomerfile(@Model.Id)">@Model.Name</button>
+            <button class="btn" onclick="clickperfomerfile(@Model.Id)">Скачать</button>
         }
     </div>
 </div>

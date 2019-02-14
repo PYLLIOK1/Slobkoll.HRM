@@ -45,15 +45,15 @@ $('.higperfomen').children('tr').click(function () {
 
 $('.higarchive').children('tr').click(function () {
     var id = $(this).find('.id').attr('id');
-    $("#workspace").load('@Url.Action("Home","TaskAuthor")' + '?id=' + id);
+    $('#workspace').load('TaskArchive?id=' + id);
 });
-$('.showobserver').children('tr').click(function () {
+$('.higobserver').children('tr').click(function () {
     var id = $(this).find('.id').attr('id');
-    $("#workspace").load('@Url.Action("Home","TaskAuthor")' + '?id=' + id);
+    $('#workspace').load('TaskObserver?id=' + id);
 });
 $('.higobserverarchive').children('tr').click(function () {
     var id = $(this).find('.id').attr('id');
-    $("#workspace").load('@Url.Action("Home","TaskAuthor")' + '?id=' + id);
+    $('#workspace').load('TaskArchiveObserver?id=' + id);
 });
 
 function clickauthorfile(Id) {
@@ -99,3 +99,4 @@ function onChangeEdit(Id, text) {
 function OnSuccess(data) {
     $('#workspace').load('TaskPerfomer?id=' + data);
 }
+
