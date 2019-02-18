@@ -25,5 +25,7 @@ namespace Slobkoll.HRM.Web.Providers.Interface
         SubTask CheckPerfomer(SubTask subTask);
         Task CheckAuthor(Task task);
         void SubTaskStatusEdit(int Id, string status);
+
+        void AddComment(User Author, int idSubTask, string CommentText);
     }
 }

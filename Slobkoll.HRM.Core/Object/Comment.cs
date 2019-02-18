@@ -1,6 +1,8 @@
-﻿namespace Slobkoll.HRM.Core.Object
+﻿using System;
+
+namespace Slobkoll.HRM.Core.Object
 {
-    public class Comment
+    public class Comments
     {
         /// <summary>
         /// Ид комментария
@@ -11,6 +13,11 @@
         /// Текст комментария
         /// </summary>
         public virtual string TextComment { get; set; }
+
+        /// <summary>
+        /// Дата и время создания комментария
+        /// </summary>
+        public virtual DateTime DateTime { get; set; }
 
         /// <summary>
         /// Автор комментария

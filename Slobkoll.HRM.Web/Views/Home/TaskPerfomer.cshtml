@@ -1,4 +1,6 @@
 ﻿<div class="col-md-12" style="margin-top:15px;">
+    <input name="idtask" type="hidden" value="@Model.TaskId.Id" />
+    <input name="idsub" type="hidden" value="@Model.Id" />
     <div class="col-md-3"><p><b>Автор:</b>@Model.TaskId.Author.Name</p></div>
     <div class="col-md-9"><h4>@Model.TaskId.Name</h4></div>
 </div>
@@ -39,16 +41,49 @@
     <p><b>Статут:</b>@Model.Status</p>
 </div>
 <div class="col-md-12">
-    @using (Ajax.BeginForm("AddPerfomerFile","Home", null , new AjaxOptions() {  UpdateTargetId = "workspace", Confirm = "Вы уверены?", OnSuccess = "OnSuccess" }, new { enctype = "multipart/form-data" }))
+    @using (Ajax.BeginForm("AddPerfomerFile", "Home", null, new AjaxOptions() { UpdateTargetId = "workspace", Confirm = "Вы уверены?", OnSuccess = "OnSuccess" }, new { enctype = "multipart/form-data" }))
     {
         <div class="col-md-10">
             <input type="hidden" name="Id" value="@Model.Id" />
             <input type="file" name="File" />
         </div>
         <div class="col-md-2">
-            <input type="submit" value="Загрузить"/>
+            <input type="submit" value="Загрузить" />
         </div>
     }
+
+    <h5 class="text-center">Комментарии</h5>
+    @foreach (var comment in Model.Comments)
+    {
+        <div class="col-md-12 col-xs-12">
+            <p><b>Автор:</b>@comment.Author.Name @comment.Author.Position</p>
+            <div class="col-md-2 col-xs-2"></div>
+            <div class="col-md-10 col-xs-10">
+                <p>@comment.TextComment</p>
+            </div>
+            <P>@comment.DateTime</P>
+        </div>
+
+    }
+    <div class="ccc col-md-12 col-xs-12">
+        <div class="col-md-9 col-xs-9"></div>
+        <div class="col-md-3 col-xs-3">
+            <a class="btnclick" style="font-size:10px;">Добавить комментарий</a>
+        </div>
+    </div>
 </div>
 <hr />
+<script>
+    $('.btnclick').on('click', function () {
+        var text = "<textarea rows='1' cols='45' class='textarea-aa' style='resize: none;'></textarea> <input type='button' class='aaa' value ='Отправить'/>";
+        var model = $(this).parents('.ccc');
+        model.empty();
+        model.append(text);
+        $('.aaa').bind('click', function () {
+            model = $(this).parents('.ccc');
+            var text = model.children('.textarea-aa');
+            AddCommentPerfomer( $('input[name="idsub"]').val(), text.val(), $('input[name="idtask"]').val());
+        });
+    });
+</script>
 

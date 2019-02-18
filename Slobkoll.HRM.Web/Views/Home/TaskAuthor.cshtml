@@ -1,4 +1,6 @@
 ﻿<div class="col-md-12" style="margin-top:15px;">
+    <input name="idtask" type="hidden" value="@Model.Id" />
+    <
     <div class="col-md-3 col-xs-3"><p><b>Автор:</b>@Model.Author.Name</p></div>
     <div class="col-md-7 col-xs-7"><h4>@Model.Name</h4></div>
     <div class="col-md-2 col-xs-2">@Html.ActionLink("Редактировать", "EditTask", new { id = Model.Id })</div>
@@ -10,9 +12,9 @@
 </div>
 <br />
 <div class="col-md-12">
-    <div class="col-md-4 col-xs-4"><p><b>Начало:</b>@Model.DateBegin</p></div>
-    <div class="col-md-4 col-xs-4"><button class="btn" onclick="clickauthorfile(@Model.Id)">Скачать</button></div>
-    <div class="col-md-4 col-xs-4"><p><b>Окончания:</b>@Model.DateEnd</p></div>
+    <div class="col-md-5 col-xs-5"><p><b>Начало:</b>@Model.DateBegin</p></div>
+    <div class="col-md-2 col-xs-2"><button class="btn" onclick="clickauthorfile(@Model.Id)">Скачать</button></div>
+    <div class="col-md-5 col-xs-5"><p><b>Окончания:</b>@Model.DateEnd</p></div>
 </div>
 <br />
 <p>
@@ -23,9 +25,11 @@
 <hr />
 @foreach (var item in Model.SubTask)
 {
-    <div class="col-md-12 col-xs-12">
-        <div class="col-md-4 col-xs-4"><p><b>Исполнитель:</b>@item.Performer.Name</p></div>
-        <div class="col-md-4 col-xs-4">
+
+    <div class="ads col-md-12 col-xs-12">
+        <input type="hidden" class="idsub" value="@item.Id" />
+        <div class="col-md-5 col-xs-5"><p><b>Исполнитель:</b>@item.Performer.Name</p></div>
+        <div class="col-md-2 col-xs-2">
             @if (item.Name == null)
             {
                 <button class="btn" disabled>Файла нету</button>
@@ -35,7 +39,7 @@
                 <button class="btn" onclick="clickperfomerfile(@item.Id)">Скачать</button>
             }
         </div>
-        <div class="col-md-4 col-xs-4">
+        <div class="col-md-5 col-xs-5">
             @if (item.Status == "Ожидает действий автора")
             {
                 <b>Статут:</b>
@@ -45,11 +49,45 @@
                     <option value="Выполнено">Выполнил</option>
                 </select>
             }
-            else 
+            else
             {
                 <p><b>Статут:</b>@item.Status</p>
             }
         </div>
+        <h5 class="text-center">Комментарии</h5>
+        @foreach (var comment in item.Comments)
+        {
+            <div class="col-md-12 col-xs-12">
+                <p><b>Автор:</b>@comment.Author.Name @comment.Author.Position</p>
+                <div class="col-md-2 col-xs-2"></div>
+                <div class="col-md-10 col-xs-10">
+                    <p>@comment.TextComment</p>
+                </div>
+                <P>@comment.DateTime</P>
+            </div>
+
+        }
+        <div class="ccc col-md-12 col-xs-12">
+            <div class="col-md-9 col-xs-9"></div>
+            <div class="col-md-3 col-xs-3">
+                <a class="btnclick" style="font-size:10px;">Добавить комментарий</a>
+            </div>
+        </div>
     </div>
     <hr />
 }
+<script>
+    $('.btnclick').on('click', function () {
+        var text = "<textarea rows='1' cols='45' name='textarea-aa' style='resize: none;'></textarea> <input type='button' class='aaa' value ='Отправить'/>";
+        var model = $(this).parents('.ccc');
+        model.empty();
+        model.append(text);
+        $('.aaa').bind('click', function () {
+            var model = $(this).parents('div.ads.col-md-12.col-xs-12');
+            var idsub = model.children('.idsub');
+            model = $(this).parents('.ccc');
+            var text = model.children('.textarea-aa');
+            AddCommentAuthor(idsub.val(), text.val(), $('input[name="idtask"]').val());
+        });
+    });
+</script>

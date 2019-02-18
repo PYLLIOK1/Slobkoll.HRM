@@ -33,6 +33,9 @@ namespace Slobkoll.HRM.Core.Mapping
 
             Map(x => x.ChangePerformer)
                 .Not.Nullable();
+
+            HasMany(x => x.Comments)
+                .Inverse();
         }
     }
 }

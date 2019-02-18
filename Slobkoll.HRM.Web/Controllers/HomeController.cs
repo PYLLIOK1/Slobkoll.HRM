@@ -199,5 +199,12 @@ namespace Slobkoll.HRM.Web.Controllers
             _homeProvider.SubTaskStatusEdit(id, text);
             return subtask.TaskId.Id;
         }
+
+       public int AddComment(int idSubTask, string commentText, int idTask)
+        {
+            var user = _homeProvider.UserLoginSerch(User.Identity.Name);
+            _homeProvider.AddComment(user, idSubTask, commentText);
+            return idTask;
+        }
     }
 }

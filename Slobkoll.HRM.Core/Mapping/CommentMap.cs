@@ -3,7 +3,7 @@ using Slobkoll.HRM.Core.Object;
 
 namespace Slobkoll.HRM.Core.Mapping
 {
-    public class CommentMap : ClassMap<Comment>
+    public class CommentMap : ClassMap<Comments>
     {
         public CommentMap()
         {
@@ -13,15 +13,19 @@ namespace Slobkoll.HRM.Core.Mapping
                 .Length(300)
                 .Not.Nullable();
 
+            Map(x => x.DateTime)
+                .CustomSqlType("smalldatetime")
+                .Not.Nullable();
+
             References(x => x.Author)
                 .Cascade
-                .SaveUpdate().
-                Not.Nullable();
+                .SaveUpdate()
+                .Not.Nullable();
 
             References(x => x.SubTask)
                 .Cascade
-                .SaveUpdate().
-                Not.Nullable();
+                .SaveUpdate()
+                .Not.Nullable();
         }
     }
 }

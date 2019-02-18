@@ -1,4 +1,6 @@
-﻿namespace Slobkoll.HRM.Core.Object
+﻿using System.Collections.Generic;
+
+namespace Slobkoll.HRM.Core.Object
 {
     public class SubTask
     {
@@ -41,5 +43,15 @@
         /// Информирование исполнителя
         /// </summary>
         public virtual bool ChangePerformer { get; set; }
+
+        private IList<Comments> comments;
+        /// <summary>
+        /// Список комментарий
+        /// </summary>
+        public virtual IList<Comments> Comments
+        {
+            get { return comments ?? (comments = new List<Comments>()); }
+            set { comments = value; }
+        }
     }
 }

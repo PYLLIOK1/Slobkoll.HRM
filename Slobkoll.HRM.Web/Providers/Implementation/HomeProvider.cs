@@ -15,12 +15,14 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
         private readonly IGroupRepository _groupRepository;
         private readonly ITaskRepository _taskRepository;
         private readonly ISubTaskRepository _subTaskRepository;
-        public HomeProvider(IUserRepository userRepository, IGroupRepository groupRepository, ITaskRepository taskRepository, ISubTaskRepository subTaskRepository)
+        private readonly ICommentsRepository _commentRepository;
+        public HomeProvider(IUserRepository userRepository, IGroupRepository groupRepository, ITaskRepository taskRepository, ISubTaskRepository subTaskRepository, ICommentsRepository commentRepository)
         {
             _groupRepository = groupRepository;
             _userRepository = userRepository;
             _taskRepository = taskRepository;
             _subTaskRepository = subTaskRepository;
+            _commentRepository = commentRepository;
         }
         public Task TaskLoad(int id)
         {
@@ -336,6 +338,18 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 taskLists.Add(taske);
             }
             return taskLists;
+        }
+
+        public void AddComment(User Author, int idSubTask, string CommentText )
+        {
+            Comments comment = new Comments
+            {
+                TextComment = CommentText,
+                DateTime = DateTime.Now,
+                Author = Author,
+                SubTask = _subTaskRepository.SubTaskLoad(idSubTask)
+            };
+            _commentRepository.AddComment(comment);
         }
     }
 }

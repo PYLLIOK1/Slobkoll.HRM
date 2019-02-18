@@ -23,8 +23,6 @@ $('.showobserverarchive').click(function () {
     $('.higobserverarchive').slideToggle(200, function () {
     });
 });
-
-
 $('.higauthor').children('tr').click(function () {
     var id = $(this).find('.id').attr('id');
     $('#workspace').load('TaskAuthor?id=' + id);
@@ -41,8 +39,6 @@ $('.higperfomen').children('tr').click(function () {
         $(this).find('#img').replaceWith("<img id='img' src='/Content/1.png' class='img-responsive center-block' width='30' height='30' />");
     }
 });
-
-
 $('.higarchive').children('tr').click(function () {
     var id = $(this).find('.id').attr('id');
     $('#workspace').load('TaskArchive?id=' + id);
@@ -55,7 +51,6 @@ $('.higobserverarchive').children('tr').click(function () {
     var id = $(this).find('.id').attr('id');
     $('#workspace').load('TaskArchiveObserver?id=' + id);
 });
-
 function clickauthorfile(Id) {
     $.ajax({
         type: "POST",
@@ -87,7 +82,7 @@ function onChangeEdit(Id, text) {
     $.ajax({
         type: "POST",
         url: "/Home/EditStatusPerfomer",
-        data: { 
+        data: {
             Id: Id,
             text: text
         },
@@ -100,3 +95,31 @@ function OnSuccess(data) {
     $('#workspace').load('TaskPerfomer?id=' + data);
 }
 
+function AddCommentAuthor(idsub, text, id) {
+    $.ajax({
+        type: "POST",
+        url: "/Home/AddComment",
+        data: {
+            idSubTask: idsub,
+            commentText: text,
+            idTask: id,
+        },
+        success: function (id) {
+            $('#workspace').load('TaskAuthor?id=' + id);
+        }
+    });
+};
+function AddCommentPerfomer(idsub, text, id) {
+    $.ajax({
+        type: "POST",
+        url: "/Home/AddComment",
+        data: {
+            idSubTask: idsub,
+            commentText: text,
+            idTask: id,
+        },
+        success: function (id) {
+            $('#workspace').load('TaskPerfomer?id=' + id);
+        }
+    });
+};

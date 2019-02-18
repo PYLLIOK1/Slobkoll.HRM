@@ -23,7 +23,7 @@ namespace Slobkoll.HRM.Core
                             c.FromConnectionStringWithKey("SedDbConnString")))
                         .Cache(c => c.UseQueryCache().ProviderClass<HashtableCacheProvider>())
                         .Mappings(m => m.FluentMappings.AddFromAssemblyOf<User>().AddFromAssemblyOf<Task>()
-                        .AddFromAssemblyOf<SubTask>().AddFromAssemblyOf<Comment>()
+                        .AddFromAssemblyOf<SubTask>().AddFromAssemblyOf<Comments>()
                         .AddFromAssemblyOf<Group>())
                         .ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(true, false, false))
                         .BuildConfiguration()
