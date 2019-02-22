@@ -125,7 +125,8 @@ namespace Slobkoll.HRM.Web.Controllers
         {
             var user = _homeProvider.UserLoginSerch(User.Identity.Name);
             var task = _homeProvider.LoadEditTask(id);
-            if (user == task.Author)
+            var userAuthor = _homeProvider.TaskLoad(id).Author;
+            if (user == userAuthor)
             {
                 return View(task);
             }
@@ -200,10 +201,16 @@ namespace Slobkoll.HRM.Web.Controllers
             return subtask.TaskId.Id;
         }
 
-       public int AddComment(int idSubTask, string commentText, int idTask)
+       public int AddCommentAuthor(int idSubTask, string commentText, int idTask)
         {
             var user = _homeProvider.UserLoginSerch(User.Identity.Name);
-            _homeProvider.AddComment(user, idSubTask, commentText);
+            _homeProvider.AddCommentAuthor(user, idSubTask, commentText);
+            return idTask;
+        }
+        public int AddCommentPerfomer(int idSubTask, string commentText, int idTask)
+        {
+            var user = _homeProvider.UserLoginSerch(User.Identity.Name);
+            _homeProvider.AddCommentPerfomer(user, idSubTask, commentText);
             return idTask;
         }
     }

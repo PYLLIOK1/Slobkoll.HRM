@@ -239,6 +239,7 @@
     <Content Include="Views\Home\TaskObserver.cshtml" />
     <Content Include="Views\Home\TaskArchive.cshtml" />
     <Content Include="Views\Home\TaskArchiveObserver.cshtml" />
+    <Content Include="Views\Home\EditTask.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

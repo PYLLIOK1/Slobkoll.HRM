@@ -98,7 +98,7 @@ function OnSuccess(data) {
 function AddCommentAuthor(idsub, text, id) {
     $.ajax({
         type: "POST",
-        url: "/Home/AddComment",
+        url: "/Home/AddCommentAuthor",
         data: {
             idSubTask: idsub,
             commentText: text,
@@ -112,7 +112,7 @@ function AddCommentAuthor(idsub, text, id) {
 function AddCommentPerfomer(idsub, text, id) {
     $.ajax({
         type: "POST",
-        url: "/Home/AddComment",
+        url: "/Home/AddCommentPErfomer",
         data: {
             idSubTask: idsub,
             commentText: text,

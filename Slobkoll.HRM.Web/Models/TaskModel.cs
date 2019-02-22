@@ -20,7 +20,7 @@ namespace Slobkoll.HRM.Web.Models
 
         [Required(ErrorMessage = "выберете дату")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy hh'/'mm }", ApplyFormatInEditMode = true )]
+        [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy hh':'mm }", ApplyFormatInEditMode = true )]
         [Display(Name = "Дата Окончиния")]
         public DateTime DateTime { get; set; }
 
@@ -46,13 +46,11 @@ namespace Slobkoll.HRM.Web.Models
 
         [Required(ErrorMessage = "выберете дату")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(DataFormatString = "{0:dd'/'MM'/'yyyy hh'/'mm }", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy hh':'mm }", ApplyFormatInEditMode = true)]
         [Display(Name = "Дата Окончиния")]
         public DateTime DateTime { get; set; }
 
         public HttpPostedFileBase File { get; set; }
-        
-        public User Author { get; set; }
     }
     public class TaskListAuthor
     {

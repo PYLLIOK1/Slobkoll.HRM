@@ -125,8 +125,6 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 Name = model.Name,
                 Description = model.Description,
                 DateTime = model.DateEnd,
-                Author = model.Author
-
             };
             return task;
         }
@@ -144,6 +142,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 {
                     file = binaryReader.ReadBytes(model.File.ContentLength);
                 }
+                task.FileName = Path.GetFileName(model.File.FileName);
                 task.Files = file;
             }
             _taskRepository.TaskUpdate(task);
@@ -340,16 +339,34 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             return taskLists;
         }
 
-        public void AddComment(User Author, int idSubTask, string CommentText )
+        public void AddCommentAuthor(User Author, int idSubTask, string CommentText )
         {
+            var SubTask = _subTaskRepository.SubTaskLoad(idSubTask);
+            SubTask.ChangePerformer = true;
+            _subTaskRepository.SubTaskEdit(SubTask);
             Comments comment = new Comments
             {
                 TextComment = CommentText,
                 DateTime = DateTime.Now,
                 Author = Author,
-                SubTask = _subTaskRepository.SubTaskLoad(idSubTask)
+                SubTask = SubTask
             };
             _commentRepository.AddComment(comment);
         }
+        public void AddCommentPerfomer(User Author, int idSubTask, string CommentText)
+        {
+            var SubTask = _subTaskRepository.SubTaskLoad(idSubTask);
+            SubTask.ChangeAuthor = true;
+            _subTaskRepository.SubTaskEdit(SubTask);
+            Comments comment = new Comments
+            {
+                TextComment = CommentText,
+                DateTime = DateTime.Now,
+                Author = Author,
+                SubTask = SubTask
+            };
+            _commentRepository.AddComment(comment);
+        }
+
     }
 }

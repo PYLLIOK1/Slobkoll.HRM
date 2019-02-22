@@ -1,6 +1,5 @@
 ﻿<div class="col-md-12" style="margin-top:15px;">
     <input name="idtask" type="hidden" value="@Model.Id" />
-    <
     <div class="col-md-3 col-xs-3"><p><b>Автор:</b>@Model.Author.Name</p></div>
     <div class="col-md-7 col-xs-7"><h4>@Model.Name</h4></div>
     <div class="col-md-2 col-xs-2">@Html.ActionLink("Редактировать", "EditTask", new { id = Model.Id })</div>
