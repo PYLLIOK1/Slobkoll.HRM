@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Web;
 
 namespace Slobkoll.HRM.Web.Providers.Implementation
 {
@@ -46,12 +47,6 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
 
         public void TaskCreate(TaskCreateModel model, User user)
         {
-            byte[] file = null;
-            using (var binaryReader = new BinaryReader(model.File.InputStream))
-            {
-                file = binaryReader.ReadBytes(model.File.ContentLength);
-            }
-
             Task task = new Task
             {
                 Name = model.Name,
@@ -59,13 +54,17 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 DateBegin = DateTime.Now,
                 DateEnd = model.DateTime,
                 FileName = Path.GetFileName(model.File.FileName),
-                Files = file,
                 Change = true,
                 Status = "Выполняется",
                 Author = user
             };
             task = _taskRepository.TaskCreate(task);
+            Directory.CreateDirectory(HttpContext.Current.Server.MapPath("Slob/TaskFiles/" + task.Id));
+            task.Files = "Slob/TaskFiles/" + task.Id + "/" + task.FileName;
+            model.File.SaveAs(HttpContext.Current.Server.MapPath("Slob/TaskFiles/" + task.Id + "/" + task.FileName));
             SubTasksCreate(model.UserIdPerfomers, model.UserIdPerfomerGroup, task);
+
+
         }
 
         public void SubTasksCreate(int[] user, int[] group, Task task)
@@ -91,14 +90,18 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 IList<User> groupuser = _groupRepository.ListUserGroup(group).ToList();
                 foreach (var item in groupuser)
                 {
-                    if (list != null)
+                    if(item.StatusUser == true)
                     {
-                        list.Add(item);
+                        if (list != null)
+                        {
+                            list.Add(item);
+                        }
+                        else
+                        {
+                            list = new List<User> { item };
+                        }
                     }
-                    else
-                    {
-                        list = new List<User> { item };
-                    }
+                    
                 }
             }
             list.Distinct();
@@ -137,14 +140,10 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             task.DateEnd = model.DateTime;
             if (model.File != null)
             {
-                byte[] file = null;
-                using (var binaryReader = new BinaryReader(model.File.InputStream))
-                {
-                    file = binaryReader.ReadBytes(model.File.ContentLength);
-                }
                 task.FileName = Path.GetFileName(model.File.FileName);
-                task.Files = file;
+                task.Files = "/TaskFiles/" + task.Id + "/" + task.FileName;
             }
+
             _taskRepository.TaskUpdate(task);
         }
 
@@ -153,18 +152,20 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             return _groupRepository.ListGroupPerfomerSelect(id) as IEnumerable<Group>;
         }
 
-        public void SubTaskEdit(int id, byte[] file, string name)
+        public void SubTaskEdit(int id, HttpPostedFileBase file, string name)
         {
             var model = _subTaskRepository.SubTaskLoad(id);
             model.ChangeAuthor = true;
             model.Status = "Ожидает проверки автора";
-            model.Files = file;
-            model.Name = name;
+            model.Files = "Slob/SubTask/" + model.Id + "/" + name;
+            model.FileName = name;
+            Directory.CreateDirectory(HttpContext.Current.Server.MapPath("Slob/Subtask/" + model.Id + "/"));
+            file.SaveAs(HttpContext.Current.Server.MapPath("Slob/Subtask/" + model.Id + "/" + name));
             _subTaskRepository.SubTaskEdit(model);
 
         }
 
-        public void SubTaskStatusEdit(int Id,string status)
+        public void SubTaskStatusEdit(int Id, string status)
         {
             var model = _subTaskRepository.SubTaskLoad(Id);
             model.Status = status;
@@ -176,10 +177,10 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
         {
             foreach (var item in task.SubTask)
             {
-                if(item.ChangeAuthor == true)
+                if (item.ChangeAuthor == true)
                 {
                     item.ChangeAuthor = false;
-                    if(item.Status == "Ожидает проверки автора")
+                    if (item.Status == "Ожидает проверки автора")
                     {
                         item.Status = "Ожидает действий автора";
                     }
@@ -231,7 +232,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                     Name = item.Name,
                     Status = item.Status,
                     Username = item.Author.Name,
-                    Time = date.ToString(),
+                    Time = date.Days.ToString() + " Д " + date.Hours.ToString() + " Ч " + date.Minutes.ToString() + " М",
                     Info = infoauthor
                 };
                 taskLists.Add(taske);
@@ -252,6 +253,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 if (item.DateEnd > DateTime.Now)
                 {
                     date = item.DateEnd - DateTime.Now;
+
                 }
                 TaskListAuthor taske = new TaskListAuthor()
                 {
@@ -259,7 +261,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                     Name = item.Name,
                     Status = sub.Status,
                     Username = item.Author.Name,
-                    Time = date.ToString(),
+                    Time = date.Days.ToString() + " Д " + date.Hours.ToString() + " Ч " + date.Minutes.ToString() + " М",
                     Info = sub.ChangePerformer
                 };
                 taskLists.Add(taske);
@@ -293,7 +295,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                     Name = item.Name,
                     Status = item.Status,
                     Username = item.Author.Name,
-                    Time = date.ToString(),
+                    Time = date.Days.ToString() + " Д " + date.Hours.ToString() + " Ч " + date.Minutes.ToString() + " М",
                     Info = infoauthor
                 };
                 taskLists.Add(taske);
@@ -339,7 +341,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             return taskLists;
         }
 
-        public void AddCommentAuthor(User Author, int idSubTask, string CommentText )
+        public void AddCommentAuthor(User Author, int idSubTask, string CommentText)
         {
             var SubTask = _subTaskRepository.SubTaskLoad(idSubTask);
             SubTask.ChangePerformer = true;

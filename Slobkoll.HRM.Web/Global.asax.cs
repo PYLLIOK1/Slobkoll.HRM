@@ -36,7 +36,7 @@ namespace Slobkoll.HRM.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            TaskCheakScheduler.Start();
+            Scheduler.Start();
             base.OnApplicationStarted();
         }
     }

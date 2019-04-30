@@ -14,7 +14,7 @@ namespace Slobkoll.HRM.Core.Mapping
                 .SaveUpdate().
                 Not.Nullable();
 
-            Map(x => x.Name)
+            Map(x => x.FileName)
                 .Length(70);
 
             Map(x => x.Files)

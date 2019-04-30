@@ -2,7 +2,6 @@
 using Slobkoll.HRM.Web.Providers.Interface;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Slobkoll.HRM.Web.Controllers
@@ -19,32 +18,33 @@ namespace Slobkoll.HRM.Web.Controllers
         {
             var user = _homeProvider.UserLoginSerch(User.Identity.Name);
             ViewBag.Id = user.Id;
+            ViewBag.UserHome = user;
             return View();
         }
         public PartialViewResult ListAuthor(int id)
         {
             var model = _homeProvider.TaskListAuthor(id);
-            return PartialView(model);
+            return PartialView(model.Reverse());
         }
         public PartialViewResult ListPerfomer(int id)
         {
             var model = _homeProvider.TaskListPerfomer(id);
-            return PartialView(model);
+            return PartialView(model.Reverse());
         }
         public PartialViewResult ListObserver(int id)
         {
             var model = _homeProvider.TaskListObserver(id);
-            return PartialView(model);
+            return PartialView(model.Reverse());
         }
         public PartialViewResult ListArchive(int id)
         {
             var model = _homeProvider.TaskListAuthorArchive(id);
-            return PartialView(model);
+            return PartialView(model.Reverse());
         }
         public PartialViewResult ListObserverArchive(int id)
         {
             var model = _homeProvider.TaskListObserverArchive(id);
-            return PartialView(model);
+            return PartialView(model.Reverse());
         }
 
 
@@ -83,6 +83,7 @@ namespace Slobkoll.HRM.Web.Controllers
         public ActionResult AddTask()
         {
             var user = _homeProvider.UserLoginSerch(User.Identity.Name);
+            ViewBag.UserHome = user;
             ViewBag.User = new SelectList(_homeProvider.SelectPerfomer(user.Id), "Id", "Name");
             ViewBag.Group = new SelectList(_homeProvider.SelecGroupPerfomer(user.Id), "Id", "Name");
             return View();
@@ -124,6 +125,7 @@ namespace Slobkoll.HRM.Web.Controllers
         public ActionResult EditTask(int id)
         {
             var user = _homeProvider.UserLoginSerch(User.Identity.Name);
+            ViewBag.UserHome = user;
             var task = _homeProvider.LoadEditTask(id);
             var userAuthor = _homeProvider.TaskLoad(id).Author;
             if (user == userAuthor)
@@ -155,42 +157,20 @@ namespace Slobkoll.HRM.Web.Controllers
             var subtask = _homeProvider.SubTaskLoad(model.Id);
             if (model.File != null)
             {
-                byte[] File = null;
-                using (var binaryReader = new BinaryReader(model.File.InputStream))
-                {
-                    File = binaryReader.ReadBytes(model.File.ContentLength);
-                }
-                _homeProvider.SubTaskEdit(model.Id, File, Path.GetFileName(model.File.FileName));
+                _homeProvider.SubTaskEdit(model.Id, model.File, Path.GetFileName(model.File.FileName));
             }
             return subtask.TaskId.Id;
         }
 
-
-
-
         public string TaskFileDownload(int id)
         {
             var Task = _homeProvider.TaskLoad(id);
-            byte[] file = Task.Files;
-            Directory.CreateDirectory(Server.MapPath("/Temp/"));
-            string path = Server.MapPath("/Temp/" + Task.FileName);
-            using (FileStream fstream = new FileStream(path, FileMode.Create))
-            {
-                fstream.Write(file, 0, file.Length);
-            }
-            return Task.FileName;
+            return Task.Files;
         }
         public string SubTaskFileDownload(int id)
         {
             var SubTask = _homeProvider.SubTaskLoad(id);
-            byte[] file = SubTask.Files;
-            Directory.CreateDirectory(Server.MapPath("/Temp/"));
-            string path = Server.MapPath("/Temp/" + SubTask.Name);
-            using (FileStream fstream = new FileStream(path, FileMode.Create))
-            {
-                fstream.Write(file, 0, file.Length);
-            }
-            return SubTask.Name;
+            return SubTask.Files;
         }
 
         [HttpPost]
@@ -201,7 +181,7 @@ namespace Slobkoll.HRM.Web.Controllers
             return subtask.TaskId.Id;
         }
 
-       public int AddCommentAuthor(int idSubTask, string commentText, int idTask)
+        public int AddCommentAuthor(int idSubTask, string commentText, int idTask)
         {
             var user = _homeProvider.UserLoginSerch(User.Identity.Name);
             _homeProvider.AddCommentAuthor(user, idSubTask, commentText);

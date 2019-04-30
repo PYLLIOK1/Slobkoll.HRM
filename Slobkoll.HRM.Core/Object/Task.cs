@@ -25,9 +25,9 @@ namespace Slobkoll.HRM.Core.Object
         /// </summary>
         public virtual string FileName { get; set; }
         /// <summary>
-        /// файл
+        /// путь к файлу
         /// </summary>
-        public virtual byte[] Files { get; set; }
+        public virtual string Files { get; set; }
 
         /// <summary>
         /// Время Начала задачи

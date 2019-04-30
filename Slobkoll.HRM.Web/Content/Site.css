@@ -24,18 +24,20 @@ textarea {
 }
 caption{
     text-align:center;
+    color:green;
 }
 
 
 .block-left {
-    height: 495px;
     float: left;
     overflow-y: scroll;
-    
+    height: 300px;
+    background-color: white;
 }
 
 
 .block-right {
     overflow-y: scroll;
-    height: 495px;
+    height: 300px;
+    background-color: white;
 }

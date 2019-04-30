@@ -1,28 +1,29 @@
 ﻿$('.showauthor').click(function () {
-    $(this).find('span').text(function (_, value) { return value == '-' ? '+' : '-' });
+    $(this).find('span').text(function (_, value) { return value === '-' ? '+' : '-'; });
     $('.higauthor').slideToggle(200, function () {
     });
 });
 $('.showperfomen').click(function () {
-    $(this).find('span').text(function (_, value) { return value == '-' ? '+' : '-' });
+    $(this).find('span').text(function (_, value) { return value === '-' ? '+' : '-'; });
     $('.higperfomen').slideToggle(200, function () {
     });
 });
 $('.showarchive').click(function () {
-    $(this).find('span').text(function (_, value) { return value == '-' ? '+' : '-' });
+    $(this).find('span').text(function (_, value) { return value === '-' ? '+' : '-'; });
     $('.higarchive').slideToggle(200, function () {
     });
 });
 $('.showobserver').click(function () {
-    $(this).find('span').text(function (_, value) { return value == '-' ? '+' : '-' });
+    $(this).find('span').text(function (_, value) { return value === '-' ? '+' : '-'; });
     $('.higobserver').slideToggle(200, function () {
     });
 });
 $('.showobserverarchive').click(function () {
-    $(this).find('span').text(function (_, value) { return value == '-' ? '+' : '-' });
+    $(this).find('span').text(function (_, value) { return value === '-' ? '+' : '-'; });
     $('.higobserverarchive').slideToggle(200, function () {
     });
 });
+
 $('.higauthor').children('tr').click(function () {
     var id = $(this).find('.id').attr('id');
     $('#workspace').load('TaskAuthor?id=' + id);
@@ -51,6 +52,7 @@ $('.higobserverarchive').children('tr').click(function () {
     var id = $(this).find('.id').attr('id');
     $('#workspace').load('TaskArchiveObserver?id=' + id);
 });
+
 function clickauthorfile(Id) {
     $.ajax({
         type: "POST",
@@ -58,12 +60,12 @@ function clickauthorfile(Id) {
         data: "id=" + Id,
         success: function (msg) {
             $('#workspace').append("<a id='downloadtask' download>aaa</a>");
-            $('#downloadtask').attr("href", "/Temp/" + msg);
+            $('#downloadtask').attr("href", msg);
             document.getElementById("downloadtask").click();
             $('#downloadtask').remove();
         }
     });
-};
+}
 function clickperfomerfile(Id) {
     $.ajax({
         type: "POST",
@@ -71,12 +73,12 @@ function clickperfomerfile(Id) {
         data: "id=" + Id,
         success: function (msg) {
             $('#workspace').append("<a id='downloadsubtask' download>aaa</a>");
-            $('#downloadsubtask').attr("href", "/Temp/" + msg);
+            $('#downloadsubtask').attr("href", msg);
             document.getElementById("downloadsubtask").click();
             $('#downloadsubtask').remove();
         }
     });
-};
+}
 
 function onChangeEdit(Id, text) {
     $.ajax({
@@ -102,13 +104,13 @@ function AddCommentAuthor(idsub, text, id) {
         data: {
             idSubTask: idsub,
             commentText: text,
-            idTask: id,
+            idTask: id
         },
         success: function (id) {
             $('#workspace').load('TaskAuthor?id=' + id);
         }
     });
-};
+}
 function AddCommentPerfomer(idsub, text, id) {
     $.ajax({
         type: "POST",
@@ -116,10 +118,10 @@ function AddCommentPerfomer(idsub, text, id) {
         data: {
             idSubTask: idsub,
             commentText: text,
-            idTask: id,
+            idTask: id
         },
         success: function (id) {
             $('#workspace').load('TaskPerfomer?id=' + id);
         }
     });
-};
+}

@@ -29,7 +29,7 @@
         <input type="hidden" class="idsub" value="@item.Id" />
         <div class="col-md-5 col-xs-5"><p><b>Исполнитель:</b>@item.Performer.Name</p></div>
         <div class="col-md-2 col-xs-2">
-            @if (item.Name == null)
+            @if (item.FileName == null)
             {
                 <button class="btn" disabled>Файла нету</button>
             }
@@ -77,7 +77,7 @@
 }
 <script>
     $('.btnclick').on('click', function () {
-        var text = "<textarea rows='1' cols='45' name='textarea-aa' style='resize: none;'></textarea> <input type='button' class='aaa' value ='Отправить'/>";
+        var text = "<textarea rows='1' cols='45' class='textarea-aa' style='resize: none;'></textarea> <input type='button' class='aaa' value ='Отправить'/>";
         var model = $(this).parents('.ccc');
         model.empty();
         model.append(text);

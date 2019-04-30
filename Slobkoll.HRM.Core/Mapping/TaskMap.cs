@@ -24,8 +24,7 @@ namespace Slobkoll.HRM.Core.Mapping
                 .Not.Nullable();
 
             Map(x => x.Files)
-                .Length(int.MaxValue)
-                .Not.Nullable();
+                .Length(int.MaxValue);
 
             Map(x => x.DateBegin)
                 .CustomSqlType("smalldatetime")

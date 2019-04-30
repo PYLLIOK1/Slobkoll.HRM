@@ -21,7 +21,7 @@ namespace Slobkoll.HRM.Web.Providers.Interface
         IList<TaskListArchive> TaskListObserverArchive(int id);
         Task TaskLoad(int id);
         SubTask SubTaskLoad(int id);
-        void SubTaskEdit(int id, byte[] file, string name);
+        void SubTaskEdit(int id, System.Web.HttpPostedFileBase file, string name);
         SubTask CheckPerfomer(SubTask subTask);
         Task CheckAuthor(Task task);
         void SubTaskStatusEdit(int Id, string status);

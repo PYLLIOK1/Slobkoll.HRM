@@ -8,7 +8,7 @@
     @Styles.Render("~/Content/css")
     <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
 </head>
-<body style="height:100vh; min-height:100vh;">
+<body style="height:100vh; min-height:100vh; background-color:lightgray;">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -21,44 +21,55 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Создать задачу", "AddTask", "Home")</li>
+                    @if (ViewBag.UserHome.UserPerformer.Count > 0)
+                    {
+                        <li>@Html.ActionLink("Создать задачу", "AddTask", "Home")</li>
+                    }
+                    @if (ViewBag.UserHome.AdminRole == true)
+                    {
+                        <li>@Html.ActionLink("Администрирование", "UserIndex", "AdminTools")</li>
+                    }
                     <li>@Html.ActionLink("Выйти из системы", "Logoff", "Account")</li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container content">
         @RenderBody()
-        <hr />
     </div>
-
-    <footer class="container">
+    <footer class="container footer">
         <p>
             &copy; @DateTime.Now.Year - КОГПОБУ "Слободской колледж
             педагогики и социальных отношений". Все права защищены.
         </p>
     </footer>
-
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/Myscripts")
-    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-    <script src="~/Scripts/jquery.datetimepicker.js"></script>
-    @RenderSection("scripts", required: false)
-    <script>
-        $(document).ready(function () {
-            $(".showauthor").click();
-            $(".showperfomen").click();
-            $(".showarchive").click();
-            $(".showobserver").click();
-            $(".datetimepicker").datetimepicker({
-                format: 'd.m.Y H:i',
-                lang: "ru",
-                minTime: 0,
-                minDate: 0,
-            })
-        });
-    </script>
 </body>
 </html>
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/Myscripts")
+@RenderSection("scripts", required: false)
+<script>
+    $(document).ready(function () {
+        $(".showauthor").click();
+        $(".showperfomen").click();
+        $(".showarchive").click();
+        $(".showobserver").click();
+        $(".showobserverarchive").click();
+        $(".datetimepicker").datetimepicker({
+            format: 'd.m.Y H:i',
+            lang: "ru",
+            minDate: 0,
+        })
+    });
+    $( window ).resize(function() {
+  var a = $(window).height();
+        var b = $(".navbar").outerHeight(true);
+        var c = $(".footer").outerHeight(true);
+        var d = a - b - c;
+        $(".block-left").height(d);
+        $(".block-right").height(d);
+    });
+    $(window).resize();
+</script>

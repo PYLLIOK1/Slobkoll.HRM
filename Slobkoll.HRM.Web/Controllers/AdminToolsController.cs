@@ -21,7 +21,7 @@ namespace Slobkoll.HRM.Web.Controllers
             if (_adminProvider.UserAdmin(User.Identity.Name))
             {
                 var model = _adminProvider.ListToUser();
-                return View(model);
+                return View(model.Reverse());
             }
             else
             {
@@ -123,7 +123,7 @@ namespace Slobkoll.HRM.Web.Controllers
         {
             if (ModelState.IsValid && _adminProvider.UserEdit(model))
             {
-                return RedirectToAction("UserIndex");
+                return UserIndex();
             }
             else
             {
@@ -166,7 +166,7 @@ namespace Slobkoll.HRM.Web.Controllers
             if (_adminProvider.UserAdmin(User.Identity.Name))
             {
                 var model = _adminProvider.ListGroup();
-                return View(model);
+                return View(model.Reverse());
             }
             else
             {
@@ -234,7 +234,7 @@ namespace Slobkoll.HRM.Web.Controllers
         {
             if (ModelState.IsValid && _adminProvider.GroupEdit(model))
             {
-                return RedirectToAction("GroupIndex");
+                return GroupIndex();
             }
             else
             {
@@ -263,7 +263,7 @@ namespace Slobkoll.HRM.Web.Controllers
         public ActionResult GroupDelete(GroupDeleteModel model)
         {
             _adminProvider.GroupDelete(model);
-            return RedirectToAction("GroupIndex");
+            return GroupIndex();
         }
         [HttpGet]
         public ActionResult GroupDetails(int Id)

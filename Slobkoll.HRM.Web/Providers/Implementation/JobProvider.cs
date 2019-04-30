@@ -15,6 +15,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             _taskRepository = taskRepository;
             _subTaskRepository = subTaskRepository;
         }
+
         public void JobTaskCheak()
         {
             IList<Task> ListTask = _taskRepository.LoadTaskAllAct();
@@ -48,6 +49,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 }
             }
         }
+
 
     }
 }

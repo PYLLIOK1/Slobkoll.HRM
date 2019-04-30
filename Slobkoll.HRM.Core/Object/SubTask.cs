@@ -15,14 +15,14 @@ namespace Slobkoll.HRM.Core.Object
         public virtual Task TaskId { get; set; }
 
         /// <summary>
-        /// файл
+        /// путь к файлу
         /// </summary>
-        public virtual byte[] Files { get; set; }
+        public virtual string Files { get; set; }
 
         /// <summary>
         /// Название файла
         /// </summary>
-        public virtual string Name { get; set; }
+        public virtual string FileName { get; set; }
 
         /// <summary>
         /// Статус подзадачи
