@@ -2,6 +2,7 @@
 using Slobkoll.HRM.Core.Repository.Interface;
 using Slobkoll.HRM.Web.Models;
 using Slobkoll.HRM.Web.Providers.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,10 +12,12 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
     {
         private readonly IUserRepository _userRepository;
         private readonly IGroupRepository _groupRepository;
-        public AdminProvider(IUserRepository userRepository, IGroupRepository groupRepository)
+        private readonly ITaskRepository _taskRepository;
+        public AdminProvider(IUserRepository userRepository, IGroupRepository groupRepository, ITaskRepository taskRepository)
         {
             _groupRepository = groupRepository;
             _userRepository = userRepository;
+            _taskRepository = taskRepository;
         }
         public bool UserAdmin(string name)
         {
@@ -198,6 +201,12 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
         {
             Group group = GroupLoad(model.Id);
             _groupRepository.DeleteGroup(group);
+        }
+
+        public List<Task> ListTaskToDate(DateTime datetime1, DateTime datetime2)
+        {
+            List<Task> tasks = _taskRepository.LoadTaskAll().Where(X =>X.DateBegin >= datetime1 && X.DateBegin <= datetime2).ToList();
+            return tasks;
         }
     }
 }

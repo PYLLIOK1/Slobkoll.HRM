@@ -1,6 +1,7 @@
 ﻿using Slobkoll.HRM.Core.Object;
 using Slobkoll.HRM.Web.Models;
 using Slobkoll.HRM.Web.Providers.Interface;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -281,6 +282,40 @@ namespace Slobkoll.HRM.Web.Controllers
         {
             return View();
         }
+
+
+
+        public ActionResult Reports()
+        {
+            return View();
+        }
+        public ActionResult ReportsSearch(string date1, string date2)
+        {
+            date2 += " 23:59:59";
+            DateTime dateTime1 = DateTime.Parse(date1);
+            DateTime dateTime2 = DateTime.Parse(date2);
+            List<Task> result = _adminProvider.ListTaskToDate(dateTime1, dateTime2);
+            ViewBag.date1 = dateTime1.ToString();
+            ViewBag.date2 = dateTime2.ToString();
+            ViewBag.res = result.Count();
+            ViewBag.green = result.Where(x => x.Status == "Выполнено").Count();
+            ViewBag.yellow = result.Where(x => x.Status == "Выполняется").Count();
+            result = result.Where(x => x.Status == "Не выполнено").ToList();
+            ViewBag.red = result.Count();
+            List<SubTask> subTasks = new List<SubTask>();
+            foreach (var item in result)
+            {
+                foreach (var item1 in item.SubTask)
+                {
+                    if(item1.Status != "Выполнено")
+                    {
+                        subTasks.Add(item1);
+                    }
+                }
+            }
+            return PartialView(subTasks);
+        }
+
     }
 }
 

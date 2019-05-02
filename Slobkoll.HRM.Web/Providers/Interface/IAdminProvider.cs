@@ -1,5 +1,6 @@
 ﻿using Slobkoll.HRM.Core.Object;
 using Slobkoll.HRM.Web.Models;
+using System;
 using System.Collections.Generic;
 
 namespace Slobkoll.HRM.Web.Providers.Interface
@@ -17,5 +18,6 @@ namespace Slobkoll.HRM.Web.Providers.Interface
         bool GroupEdit(GroupEditModel model);
         void GroupDelete(GroupDeleteModel model);
         bool UserAdmin(string name);
+        List<Task> ListTaskToDate(DateTime datetime1, DateTime datetime2);
     }
 }

@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Отчеты";
+    Layout = "~/Views/Shared/_LayoutAdminTools.cshtml";
+}
+@{
+    string now = DateTime.Now.ToShortDateString();
+    string mes = DateTime.Now.AddMonths(-1).ToShortDateString();
+    string twoweek = DateTime.Now.AddDays(-14).ToShortDateString();
+}
+
+<h2>Отчет о работе персонала с системой</h2>
+<div>
+    <input type="text" name="name" id="search" class="datetimepicker" />
+    <input type="text" name="name1" id="search1" class="datetimepicker" />
+    <input type='button' id="submit" value='Вывести' />
+</div>
+<div style="margin-right:8px;float:left;">
+    @Ajax.ActionLink("За Месяц", "ReportsSearch", new { date1 = mes, date2 = now }, new AjaxOptions { UpdateTargetId = "results" })
+    @Ajax.ActionLink("За две недели", "ReportsSearch", new { date1 = twoweek, date2 = now }, new AjaxOptions { UpdateTargetId = "results" })
+    @Ajax.ActionLink("За сегодня", "ReportsSearch", new { date1 = now, date2 = now }, new AjaxOptions { UpdateTargetId = "results" })
+</div>
+<div id="results"></div>

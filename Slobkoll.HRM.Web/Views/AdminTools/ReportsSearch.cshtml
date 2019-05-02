@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Slobkoll.HRM.Core.Object.SubTask>
+<style>
+     TD, TH {
+    border-bottom: 1px solid black; 
+   }
+</style>
+<hr style="background-color: black; color: black; height: 2px;" />
+<h3 style="text-align:center;">C @ViewBag.date1 по @ViewBag.date2</h3>
+<p>Создано задач: @ViewBag.res</p>
+<p style="background-color:green">Из них выполнено: @ViewBag.green</p>
+<p style="background-color:yellow">Из них в процессе: @ViewBag.yellow</p>
+<p style="background-color:red">Из них не выполнено: @ViewBag.red</p>
+<table class="table">
+    <tr>
+        <th>
+            Номер задачи
+        </th>
+        <th>
+            Автор задачи
+        </th>
+        <th>
+            Исполнитель
+        </th>
+        <th>
+            Статус
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskId.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaskId.Author.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Performer.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+    </tr>
+}
+</table>

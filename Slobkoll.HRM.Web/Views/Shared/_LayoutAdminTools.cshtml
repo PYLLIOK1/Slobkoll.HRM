@@ -1,14 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title – Slobkoll HRM</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
 </head>
-<body style="height:100vh;">
+<body style="height: 100vh; background-color: lightgray;">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -23,16 +24,16 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Пользователи", "UserIndex", "AdminTools")</li>
                     <li>@Html.ActionLink("Группы", "GroupIndex", "AdminTools")</li>
+                    <li>@Html.ActionLink("Отчеты", "Reports", "AdminTools")</li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container content">
         @RenderBody()
-        <hr />
     </div>
 
-    <footer class="container">
+    <footer class="container footer">
         <p>
             &copy; @DateTime.Now.Year - КОГПОБУ "Слободской колледж
             педагогики и социальных отношений". Все права защищены.
@@ -43,5 +44,38 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/Myscripts")
     @RenderSection("scripts", required: false)
+    <script>
+    $(document).ready(function () {
+        $(".datetimepicker").datetimepicker({
+            timepicker: false,
+            format: 'd.m.Y',
+            lang: "ru",
+            maxDate: 0,
+        })
+        $('#submit').click(function (e) {
+            e.preventDefault();
+            var date1 = $('#search').val();
+            var date2 = $('#search1').val();
+            date1 = encodeURIComponent(date1);
+            date2 = encodeURIComponent(date2);
+            $('#results').load('@Url.Action("ReportsSearch", "AdminTools")?date1=' + date1 + '&date2=' + date2);
+        })
+        });
+    $(window).resize(function () {
+    var a = $(window).height();
+    var b = $(".navbar").outerHeight(true);
+    var c = $(".footer").outerHeight(true);
+    var d = a - b - c;
+    $(".content").height(d);
+    });
+    $(window).resize();
+    </script>
+    <style>
+        .content {
+            overflow-y: scroll;
+            height: 300px;
+            background-color: white;
+        }
+    </style>
 </body>
 </html>
