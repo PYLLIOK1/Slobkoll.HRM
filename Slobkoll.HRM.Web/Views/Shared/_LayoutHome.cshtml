@@ -34,6 +34,7 @@
             </div>
         </div>
     </div>
+    <div><span id="notification" style="color:red;font-size:15px;"></span></div>
     <div class="container content">
         @RenderBody()
     </div>
@@ -49,6 +50,10 @@
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
 @Scripts.Render("~/bundles/Myscripts")
+<script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+<script src="~/signalr/hubs"></script>
+<script src="~/Scripts/noty/jquery.noty.js"></script>
+<script src="~/Scripts/util.js"></script>
 @RenderSection("scripts", required: false)
 <script>
     $(document).ready(function () {
@@ -63,8 +68,8 @@
             minDate: 0,
         })
     });
-    $( window ).resize(function() {
-  var a = $(window).height();
+    $(window).resize(function () {
+        var a = $(window).height();
         var b = $(".navbar").outerHeight(true);
         var c = $(".footer").outerHeight(true);
         var d = a - b - c;

@@ -159,6 +159,7 @@ namespace Slobkoll.HRM.Web.Controllers
             {
                 _homeProvider.SubTaskEdit(model.Id, model.File, Path.GetFileName(model.File.FileName));
             }
+
             return subtask.TaskId.Id;
         }
 
@@ -193,5 +194,6 @@ namespace Slobkoll.HRM.Web.Controllers
             _homeProvider.AddCommentPerfomer(user, idSubTask, commentText);
             return idTask;
         }
+        
     }
 }

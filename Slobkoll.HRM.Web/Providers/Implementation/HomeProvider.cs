@@ -63,8 +63,6 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             task.Files = "Slob/TaskFiles/" + task.Id + "/" + task.FileName;
             model.File.SaveAs(HttpContext.Current.Server.MapPath("Slob/TaskFiles/" + task.Id + "/" + task.FileName));
             SubTasksCreate(model.UserIdPerfomers, model.UserIdPerfomerGroup, task);
-
-
         }
 
         public void SubTasksCreate(int[] user, int[] group, Task task)
@@ -116,6 +114,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                     ChangeAuthor = false
                 };
                 _subTaskRepository.SubTaskCreate(subTask);
+                SendMessage(subTask.Performer.Login);
             }
         }
 
@@ -145,6 +144,10 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             }
 
             _taskRepository.TaskUpdate(task);
+            foreach (var item in task.SubTask)
+            {
+                SendMessage(item.Performer.Login);
+            }
         }
 
         public IEnumerable<Group> SelecGroupPerfomer(int id)
@@ -162,7 +165,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             Directory.CreateDirectory(HttpContext.Current.Server.MapPath("Slob/Subtask/" + model.Id + "/"));
             file.SaveAs(HttpContext.Current.Server.MapPath("Slob/Subtask/" + model.Id + "/" + name));
             _subTaskRepository.SubTaskEdit(model);
-
+            SendMessage(model.TaskId.Author.Login);
         }
 
         public void SubTaskStatusEdit(int Id, string status)
@@ -171,6 +174,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             model.Status = status;
             model.ChangePerformer = true;
             _subTaskRepository.SubTaskEdit(model);
+            SendMessage(model.TaskId.Author.Login);
         }
 
         public Task CheckAuthor(Task task)
@@ -183,6 +187,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                     if (item.Status == "Ожидает проверки автора")
                     {
                         item.Status = "Ожидает действий автора";
+                        SendMessage(item.Performer.Login);
                     }
                     _subTaskRepository.SubTaskEdit(item);
                 }
@@ -201,6 +206,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 }
                 _subTaskRepository.SubTaskEdit(subTask);
             }
+            SendMessage(subTask.TaskId.Author.Login);
             return subTask;
         }
 
@@ -341,6 +347,8 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             return taskLists;
         }
 
+
+
         public void AddCommentAuthor(User Author, int idSubTask, string CommentText)
         {
             var SubTask = _subTaskRepository.SubTaskLoad(idSubTask);
@@ -354,6 +362,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 SubTask = SubTask
             };
             _commentRepository.AddComment(comment);
+            SendMessage(SubTask.Performer.Login);
         }
         public void AddCommentPerfomer(User Author, int idSubTask, string CommentText)
         {
@@ -368,7 +377,19 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 SubTask = SubTask
             };
             _commentRepository.AddComment(comment);
+            SendMessage(SubTask.TaskId.Author.Login);
         }
 
+
+
+
+        private void SendMessage(string name)
+        {
+            var context = Microsoft.AspNet.SignalR.GlobalHost.ConnectionManager.GetHubContext<MyHub>();
+            foreach (var connectionId in MyHub._connections.GetConnections(name))
+            {
+                context.Clients.Client(connectionId).Message("что изменилось!");
+            }
+        }
     }
 }
