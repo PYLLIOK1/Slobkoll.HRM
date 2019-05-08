@@ -24,7 +24,6 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Пользователи", "UserIndex", "AdminTools")</li>
                     <li>@Html.ActionLink("Группы", "GroupIndex", "AdminTools")</li>
-                    <li>@Html.ActionLink("Отчеты", "Reports", "AdminTools")</li>
                 </ul>
             </div>
         </div>
@@ -45,30 +44,22 @@
     @Scripts.Render("~/bundles/Myscripts")
     @RenderSection("scripts", required: false)
     <script>
-    $(document).ready(function () {
-        $(".datetimepicker").datetimepicker({
-            timepicker: false,
-            format: 'd.m.Y',
-            lang: "ru",
-            maxDate: 0,
-        })
-        $('#submit').click(function (e) {
-            e.preventDefault();
-            var date1 = $('#search').val();
-            var date2 = $('#search1').val();
-            date1 = encodeURIComponent(date1);
-            date2 = encodeURIComponent(date2);
-            $('#results').load('@Url.Action("ReportsSearch", "AdminTools")?date1=' + date1 + '&date2=' + date2);
-        })
+        $(document).ready(function () {
+            $(".datetimepicker").datetimepicker({
+                timepicker: false,
+                format: 'd.m.Y',
+                lang: "ru",
+                maxDate: 0,
+            })
         });
-    $(window).resize(function () {
-    var a = $(window).height();
-    var b = $(".navbar").outerHeight(true);
-    var c = $(".footer").outerHeight(true);
-    var d = a - b - c;
-    $(".content").height(d);
-    });
-    $(window).resize();
+        $(window).resize(function () {
+            var a = $(window).height();
+            var b = $(".navbar").outerHeight(true);
+            var c = $(".footer").outerHeight(true);
+            var d = a - b - c;
+            $(".content").height(d);
+        });
+        $(window).resize();
     </script>
     <style>
         .content {

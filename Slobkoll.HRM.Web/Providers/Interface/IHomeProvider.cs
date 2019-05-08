@@ -1,5 +1,6 @@
 ﻿using Slobkoll.HRM.Core.Object;
 using Slobkoll.HRM.Web.Models;
+using System;
 using System.Collections.Generic;
 
 
@@ -28,5 +29,7 @@ namespace Slobkoll.HRM.Web.Providers.Interface
 
         void AddCommentAuthor(User Author, int idSubTask, string CommentText);
         void AddCommentPerfomer(User Author, int idSubTask, string CommentText);
+
+        List<Task> ListTaskToDate(DateTime datetime1, DateTime datetime2);
     }
 }

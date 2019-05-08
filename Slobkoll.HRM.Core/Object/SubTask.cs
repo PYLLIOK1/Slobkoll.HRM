@@ -53,5 +53,14 @@ namespace Slobkoll.HRM.Core.Object
             get { return comments ?? (comments = new List<Comments>()); }
             set { comments = value; }
         }
+        private IList<SubTaskMod> subTaskMods;
+        /// <summary>
+        /// список изменений
+        /// </summary>
+        public virtual IList<SubTaskMod> SubTaskMods
+        {
+            get { return subTaskMods ?? (subTaskMods = new List<SubTaskMod>()); }
+            set { subTaskMods = value; }
+        }
     }
 }

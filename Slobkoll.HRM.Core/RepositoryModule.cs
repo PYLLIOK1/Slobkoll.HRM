@@ -24,7 +24,7 @@ namespace Slobkoll.HRM.Core
                         .Cache(c => c.UseQueryCache().ProviderClass<HashtableCacheProvider>())
                         .Mappings(m => m.FluentMappings.AddFromAssemblyOf<User>().AddFromAssemblyOf<Task>()
                         .AddFromAssemblyOf<SubTask>().AddFromAssemblyOf<Comments>()
-                        .AddFromAssemblyOf<Group>())
+                        .AddFromAssemblyOf<Group>().AddFromAssemblyOf<SubTaskMod>())
                         .ExposeConfiguration(cfg => new SchemaExport(cfg).Execute(true, false, false))
                         .BuildConfiguration()
                         .BuildSessionFactory()

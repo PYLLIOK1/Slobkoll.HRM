@@ -34,10 +34,21 @@ namespace Slobkoll.HRM.Web.Jobs
                 .WithSimpleSchedule(x => x            
                     .WithIntervalInMinutes(1)          
                     .RepeatForever())                   
-                .Build();                               
-                             
+                .Build();
 
-            await scheduler.ScheduleJob(job, trigger);        
+            IJobDetail job1 = JobBuilder.Create<TaskBackup>().Build();
+
+            ITrigger trigger1 = TriggerBuilder.Create()
+                .WithIdentity("trigger2", "group2")
+                .StartNow()
+                .WithSimpleSchedule(x => x
+                    .WithIntervalInHours(24)
+                    .RepeatForever())
+                .Build();
+
+
+            await scheduler.ScheduleJob(job, trigger);
+            await scheduler.ScheduleJob(job1, trigger1);
         }
     }
 

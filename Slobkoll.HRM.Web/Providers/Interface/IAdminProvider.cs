@@ -18,6 +18,6 @@ namespace Slobkoll.HRM.Web.Providers.Interface
         bool GroupEdit(GroupEditModel model);
         void GroupDelete(GroupDeleteModel model);
         bool UserAdmin(string name);
-        List<Task> ListTaskToDate(DateTime datetime1, DateTime datetime2);
+        
     }
 }

@@ -25,6 +25,7 @@ namespace Slobkoll.HRM.Web
             kernel.Bind<ITaskRepository>().To<TaskRepository>();
             kernel.Bind<ISubTaskRepository>().To<SubTaskRepository>();
             kernel.Bind<ICommentsRepository>().To<CommentsRepository>();
+            kernel.Bind<ISubTaskModRepository>().To<SubTaskModRepository>();
             kernel.Bind<IHomeProvider>().To<HomeProvider>();
             kernel.Bind<IAuthProvider>().To<AuthProvider>();
             kernel.Bind<IAdminProvider>().To<AdminProvider>();

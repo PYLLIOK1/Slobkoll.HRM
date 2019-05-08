@@ -17,13 +17,15 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
         private readonly ITaskRepository _taskRepository;
         private readonly ISubTaskRepository _subTaskRepository;
         private readonly ICommentsRepository _commentRepository;
-        public HomeProvider(IUserRepository userRepository, IGroupRepository groupRepository, ITaskRepository taskRepository, ISubTaskRepository subTaskRepository, ICommentsRepository commentRepository)
+        private readonly ISubTaskModRepository _subTaskModRepository;
+        public HomeProvider(IUserRepository userRepository, IGroupRepository groupRepository, ITaskRepository taskRepository, ISubTaskRepository subTaskRepository, ICommentsRepository commentRepository, ISubTaskModRepository subTaskModRepository)
         {
             _groupRepository = groupRepository;
             _userRepository = userRepository;
             _taskRepository = taskRepository;
             _subTaskRepository = subTaskRepository;
             _commentRepository = commentRepository;
+            _subTaskModRepository = subTaskModRepository;
         }
         public Task TaskLoad(int id)
         {
@@ -111,10 +113,11 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                     Performer = item,
                     TaskId = task,
                     Status = "Ожидает проверки исполнителем",
-                    ChangeAuthor = false
+                    ChangeAuthor = false,
                 };
                 _subTaskRepository.SubTaskCreate(subTask);
-                SendMessage(subTask.Performer.Login);
+                string message = "У вас новая задача";
+                SendMessage(subTask.Performer.Login, message);
             }
         }
 
@@ -146,7 +149,15 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             _taskRepository.TaskUpdate(task);
             foreach (var item in task.SubTask)
             {
-                SendMessage(item.Performer.Login);
+                SubTaskMod mod = new SubTaskMod
+                {
+                    SubTaskId = item,
+                    Status = "Задача изменена",
+                    DateTime = DateTime.Now
+                };
+                _subTaskModRepository.AddSubTaskMod(mod);
+                string message = "Задача №" + item.TaskId.Id + " изменена";
+                SendMessage(item.Performer.Login, message);
             }
         }
 
@@ -165,7 +176,15 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             Directory.CreateDirectory(HttpContext.Current.Server.MapPath("Slob/Subtask/" + model.Id + "/"));
             file.SaveAs(HttpContext.Current.Server.MapPath("Slob/Subtask/" + model.Id + "/" + name));
             _subTaskRepository.SubTaskEdit(model);
-            SendMessage(model.TaskId.Author.Login);
+            SubTaskMod mod = new SubTaskMod
+            {
+                SubTaskId = model,
+                Status = model.Status,
+                DateTime = DateTime.Now
+            };
+            _subTaskModRepository.AddSubTaskMod(mod);
+            string message = "Задача №" + model.TaskId.Id + " ждет вашей проверки";
+            SendMessage(model.TaskId.Author.Login, message);
         }
 
         public void SubTaskStatusEdit(int Id, string status)
@@ -174,7 +193,15 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             model.Status = status;
             model.ChangePerformer = true;
             _subTaskRepository.SubTaskEdit(model);
-            SendMessage(model.TaskId.Author.Login);
+            SubTaskMod mod = new SubTaskMod
+            {
+                SubTaskId = model,
+                Status = status,
+                DateTime = DateTime.Now
+            };
+            _subTaskModRepository.AddSubTaskMod(mod);
+            string message = "Автор изменил статус задачи №" + model.TaskId.Id;
+            SendMessage(model.Performer.Login, message);
         }
 
         public Task CheckAuthor(Task task)
@@ -187,7 +214,15 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                     if (item.Status == "Ожидает проверки автора")
                     {
                         item.Status = "Ожидает действий автора";
-                        SendMessage(item.Performer.Login);
+                        SubTaskMod mod = new SubTaskMod
+                        {
+                            SubTaskId = item,
+                            Status = item.Status,
+                            DateTime = DateTime.Now
+                        };
+                        _subTaskModRepository.AddSubTaskMod(mod);
+                        string message = "Автор проверил задачи №" + item.TaskId.Id;
+                        SendMessage(item.Performer.Login, message);
                     }
                     _subTaskRepository.SubTaskEdit(item);
                 }
@@ -203,10 +238,18 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 if (subTask.Status == "Ожидает проверки исполнителем")
                 {
                     subTask.Status = "Ожидает действий исполнителем";
+                    SubTaskMod mod = new SubTaskMod
+                    {
+                        SubTaskId = subTask,
+                        Status = subTask.Status,
+                        DateTime = DateTime.Now
+                    };
+                    _subTaskModRepository.AddSubTaskMod(mod);
+                    string message = subTask.Performer.Name + " проверил задачи №" + subTask.TaskId.Id;
+                    SendMessage(subTask.TaskId.Author.Login, message);
                 }
                 _subTaskRepository.SubTaskEdit(subTask);
             }
-            SendMessage(subTask.TaskId.Author.Login);
             return subTask;
         }
 
@@ -362,7 +405,8 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 SubTask = SubTask
             };
             _commentRepository.AddComment(comment);
-            SendMessage(SubTask.Performer.Login);
+            string message = "Автор добавил комментарий к задачи №" + SubTask.TaskId.Id;
+            SendMessage(SubTask.Performer.Login, message);
         }
         public void AddCommentPerfomer(User Author, int idSubTask, string CommentText)
         {
@@ -377,19 +421,23 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 SubTask = SubTask
             };
             _commentRepository.AddComment(comment);
-            SendMessage(SubTask.TaskId.Author.Login);
+            string message = SubTask.Performer.Name + " добавил комментарий к задачи №" + SubTask.TaskId.Id;
+            SendMessage(SubTask.TaskId.Author.Login, message);
         }
 
 
-
-
-        private void SendMessage(string name)
+        private void SendMessage(string name, string text)
         {
             var context = Microsoft.AspNet.SignalR.GlobalHost.ConnectionManager.GetHubContext<MyHub>();
             foreach (var connectionId in MyHub._connections.GetConnections(name))
             {
-                context.Clients.Client(connectionId).Message("что изменилось!");
+                context.Clients.Client(connectionId).Message(text);
             }
+        }
+        public List<Task> ListTaskToDate(DateTime datetime1, DateTime datetime2)
+        {
+            List<Task> tasks = _taskRepository.LoadTaskAll().Where(X => X.DateBegin >= datetime1 && X.DateBegin <= datetime2).ToList();
+            return tasks;
         }
     }
 }

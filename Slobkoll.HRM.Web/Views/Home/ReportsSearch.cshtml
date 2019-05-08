@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Slobkoll.HRM.Core.Object.SubTask>
 <style>
-     TD, TH {
-    border-bottom: 1px solid black; 
-   }
+    TD, TH {
+        border-bottom: 1px solid black;
+    }
 </style>
 <hr style="background-color: black; color: black; height: 2px;" />
 <h3 style="text-align:center;">C @ViewBag.date1 по @ViewBag.date2</h3>
@@ -22,24 +22,30 @@
             Исполнитель
         </th>
         <th>
-            Статус
+            Статус - дата
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TaskId.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TaskId.Author.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Performer.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskId.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskId.Author.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Performer.Name)
+            </td>
+            <td>
+                @foreach (var item1 in item.SubTaskMods)
+                {
+                    string str = item1.Status + " - " + item1.DateTime.ToString();
+                    @str
+                    <br />
+                }
+            </td>
+        </tr>
+    }
 </table>

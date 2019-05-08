@@ -33,37 +33,37 @@ namespace Slobkoll.HRM.Core.Mapping
                 .Not.Nullable();
 
             HasManyToMany(x => x.Group)
-                .Cascade.All()
+                .Cascade.SaveUpdate()
                 .Inverse().Table("Group_User")
                 .ParentKeyColumn("UserID")
                 .ChildKeyColumn("GroupID");
 
             HasManyToMany(x => x.GroupPerformer)
-                .Cascade.All()
+                .Cascade.SaveUpdate()
                 .Inverse().Table("User_GroupPerfomer")
                 .ParentKeyColumn("UserID")
                 .ChildKeyColumn("GroupIDPerfomer");
 
             HasManyToMany(x => x.UserObserved)
-                .Cascade.All()
+                .Cascade.SaveUpdate()
                 .ParentKeyColumn("UserObservedid")
                 .ChildKeyColumn("UserObserverid")
                 .Table("UserObserved_UserObserver");
 
             HasManyToMany(x => x.UserObserver)
-                .Cascade.All()
+                .Cascade.SaveUpdate()
                 .ParentKeyColumn("UserObserverid")
                 .ChildKeyColumn("UserObservedid")
                 .Table("UserObserved_UserObserver");
 
             HasManyToMany(x => x.UserCustomer)
-                .Cascade.All()
+                .Cascade.SaveUpdate()
                 .ParentKeyColumn("UserPerformerid")
                 .ChildKeyColumn("UserCustomerid")
                 .Table("UserPerformer_UserCustomer");
 
             HasManyToMany(x => x.UserPerformer)
-                .Cascade.All()
+                .Cascade.SaveUpdate()
                 .ParentKeyColumn("UserCustomerid")
                 .ChildKeyColumn("UserPerformerid")
                 .Table("UserPerformer_UserCustomer");

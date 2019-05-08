@@ -22,59 +22,66 @@
 
 
 <hr />
-@foreach (var item in Model.SubTask)
-{
 
-    <div class="ads col-md-12 col-xs-12">
-        <input type="hidden" class="idsub" value="@item.Id" />
-        <div class="col-md-5 col-xs-5"><p><b>Исполнитель:</b>@item.Performer.Name</p></div>
-        <div class="col-md-2 col-xs-2">
-            @if (item.FileName == null)
-            {
-                <button class="btn" disabled>Файла нету</button>
-            }
-            else
-            {
-                <button class="btn" onclick="clickperfomerfile(@item.Id)">Скачать</button>
-            }
-        </div>
-        <div class="col-md-5 col-xs-5">
-            @if (item.Status == "Ожидает действий автора")
-            {
-                <b>Статут:</b>
-                <select onchange="onChangeEdit(@item.Id, this.options[this.selectedIndex].value)" name="select">
-                    <option disabled selected>@item.Status</option>
-                    <option value="Ожидает проверки исполнителем">Отправить на исправление</option>
-                    <option value="Выполнено">Выполнил</option>
-                </select>
-            }
-            else
-            {
-                <p><b>Статут:</b>@item.Status</p>
-            }
-        </div>
-        <h5 class="text-center">Комментарии</h5>
-        @foreach (var comment in item.Comments)
+<table class="table">
+    <tbody>
+        @foreach (var item in Model.SubTask)
         {
-            <div class="col-md-12 col-xs-12">
-                <p><b>Автор:</b>@comment.Author.Name @comment.Author.Position</p>
-                <div class="col-md-2 col-xs-2"></div>
-                <div class="col-md-10 col-xs-10">
-                    <p>@comment.TextComment</p>
-                </div>
-                <P>@comment.DateTime</P>
-            </div>
+            <tr>
+                <td style="border-bottom: 1px solid black;">
+                    <div class="ads col-md-12 col-xs-12">
+                        <input type="hidden" class="idsub" value="@item.Id" />
+                        <div class="col-md-5 col-xs-5"><p><b>Исполнитель:</b>@item.Performer.Name</p></div>
+                        <div class="col-md-2 col-xs-2">
+                            @if (item.FileName == null)
+                            {
+                                <button class="btn" disabled>Файла нету</button>
+                            }
+                            else
+                            {
+                                <button class="btn" onclick="clickperfomerfile(@item.Id)">Скачать</button>
+                            }
+                        </div>
+                        <div class="col-md-5 col-xs-5">
+                            @if (item.Status == "Ожидает действий автора")
+                            {
+                                <b>Статут:</b>
+                                <select onchange="onChangeEdit(@item.Id, this.options[this.selectedIndex].value)" name="select">
+                                    <option disabled selected>@item.Status</option>
+                                    <option value="Ожидает проверки исполнителем">Отправить на исправление</option>
+                                    <option value="Выполнено">Выполнил</option>
+                                </select>
+                            }
+                            else
+                            {
+                                <p><b>Статут:</b>@item.Status</p>
+                            }
+                        </div>
+                        <h5 class="text-center">Комментарии</h5>
+                        @foreach (var comment in item.Comments)
+                        {
+                            <div class="col-md-12 col-xs-12">
+                                <p><b>Автор:</b>@comment.Author.Name @comment.Author.Position</p>
+                                <div class="col-md-2 col-xs-2"></div>
+                                <div class="col-md-10 col-xs-10">
+                                    <p>@comment.TextComment</p>
+                                </div>
+                                <P>@comment.DateTime</P>
+                            </div>
 
+                        }
+                        <div class="ccc col-md-12 col-xs-12">
+                            <div class="col-md-9 col-xs-9"></div>
+                            <div class="col-md-3 col-xs-3">
+                                <a class="btnclick" style="font-size:10px;">Добавить комментарий</a>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
         }
-        <div class="ccc col-md-12 col-xs-12">
-            <div class="col-md-9 col-xs-9"></div>
-            <div class="col-md-3 col-xs-3">
-                <a class="btnclick" style="font-size:10px;">Добавить комментарий</a>
-            </div>
-        </div>
-    </div>
-    <hr />
-}
+    </tbody>
+</table>
 <script>
     $('.btnclick').on('click', function () {
         var text = "<textarea rows='1' cols='45' class='textarea-aa' style='resize: none;'></textarea> <input type='button' class='aaa' value ='Отправить'/>";

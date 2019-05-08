@@ -3,5 +3,6 @@
     public interface IJobProvider
     {
         void JobTaskCheak();
+        void JobBackup();
     }
 }

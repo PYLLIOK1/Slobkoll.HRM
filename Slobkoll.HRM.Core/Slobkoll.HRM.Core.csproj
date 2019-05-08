@@ -91,6 +91,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mapping\SubTaskModMap.cs" />
     <Compile Include="Mapping\CommentMap.cs" />
     <Compile Include="Mapping\GroupMap.cs" />
     <Compile Include="Mapping\SubTaskMap.cs" />
@@ -99,10 +100,12 @@
     <Compile Include="Object\Comment.cs" />
     <Compile Include="Object\Group.cs" />
     <Compile Include="Object\SubTask.cs" />
+    <Compile Include="Object\SubTaskMod.cs" />
     <Compile Include="Object\Task.cs" />
     <Compile Include="Object\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryModule.cs" />
+    <Compile Include="Repository\Implementation\SubTaskModRepository.cs" />
     <Compile Include="Repository\Implementation\CommentsRepository.cs" />
     <Compile Include="Repository\Implementation\GroupRepository.cs" />
     <Compile Include="Repository\Implementation\SubTaskRepository.cs" />
@@ -110,6 +113,7 @@
     <Compile Include="Repository\Implementation\UserRepository.cs" />
     <Compile Include="Repository\Interface\ICommentsRepository.cs" />
     <Compile Include="Repository\Interface\IGroupRepository.cs" />
+    <Compile Include="Repository\Interface\ISubTaskModRepository.cs" />
     <Compile Include="Repository\Interface\ISubTaskRepository.cs" />
     <Compile Include="Repository\Interface\ITaskRepository.cs" />
     <Compile Include="Repository\Interface\IUserRepository.cs" />

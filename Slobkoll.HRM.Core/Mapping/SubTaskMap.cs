@@ -36,6 +36,9 @@ namespace Slobkoll.HRM.Core.Mapping
 
             HasMany(x => x.Comments)
                 .Inverse();
+
+            HasMany(x => x.SubTaskMods)
+                .Inverse();
         }
     }
 }

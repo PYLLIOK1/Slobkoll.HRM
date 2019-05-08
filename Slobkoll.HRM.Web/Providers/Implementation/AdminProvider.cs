@@ -202,11 +202,5 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             Group group = GroupLoad(model.Id);
             _groupRepository.DeleteGroup(group);
         }
-
-        public List<Task> ListTaskToDate(DateTime datetime1, DateTime datetime2)
-        {
-            List<Task> tasks = _taskRepository.LoadTaskAll().Where(X =>X.DateBegin >= datetime1 && X.DateBegin <= datetime2).ToList();
-            return tasks;
-        }
     }
 }

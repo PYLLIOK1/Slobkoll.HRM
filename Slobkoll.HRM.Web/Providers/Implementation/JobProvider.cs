@@ -3,6 +3,12 @@ using Slobkoll.HRM.Core.Repository.Interface;
 using Slobkoll.HRM.Web.Providers.Interface;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.IO;
+using Ionic.Zip;
+using System.Linq;
+using Ionic.Zlib;
 
 namespace Slobkoll.HRM.Web.Providers.Implementation
 {
@@ -44,9 +50,9 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                             {
                                 foreach (var connectionId in MyHub._connections.GetConnections(item1.Performer.Login))
                                 {
-                                    context.Clients.Client(connectionId).Message("что изменилось!");
+                                    context.Clients.Client(connectionId).Message("Задача №" + item.Id + " закончилась");
                                 }
-                            }   
+                            }
                         }
                         else
                         {
@@ -57,7 +63,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                             {
                                 foreach (var connectionId in MyHub._connections.GetConnections(item1.Performer.Login))
                                 {
-                                    context.Clients.Client(connectionId).Message("что изменилось!");
+                                    context.Clients.Client(connectionId).Message("Задача №" + item.Id + " закончилась");
                                 }
                             }
                         }
@@ -65,7 +71,43 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 }
             }
         }
-
-
+        public void JobBackup()
+        {
+            string path = System.Web.Hosting.HostingEnvironment.MapPath(@"~/App_Data/PathBackup.txt");
+            IEnumerable<string> result = File.ReadLines(path).Skip(0).Take(1);
+            foreach (string str in result)
+            {
+                path = str;
+            }
+            BackupDB(path + @"\Slobkoll.bak");
+            СompressDirectory(path + @"\Slobkoll.zip");
+        }
+        private void BackupDB(string OutputFilePath)
+        {
+            if (File.Exists(OutputFilePath))
+            {
+                File.Delete(OutputFilePath);
+            }
+            string sSQL = @"BACKUP DATABASE Slobkoll TO DISK = '" + OutputFilePath + "';";
+            using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["SedDbConnString"].ConnectionString))
+            {
+                SqlCommand command = new SqlCommand(sSQL, connection);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+        private void СompressDirectory(string OutputFilePath)
+        {
+            if (File.Exists(OutputFilePath))
+            {
+                File.Delete(OutputFilePath);
+            }
+            using (ZipFile zip = new ZipFile())
+            {
+                zip.ProvisionalAlternateEncoding = System.Text.Encoding.GetEncoding(866);
+                zip.AddDirectory(System.Web.Hosting.HostingEnvironment.MapPath(@"~\Home"));
+                zip.Save(OutputFilePath);
+            }
+        }
     }
 }
