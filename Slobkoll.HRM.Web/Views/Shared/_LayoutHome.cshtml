@@ -26,7 +26,7 @@
                     {
                         <li>@Html.ActionLink("Создать задачу", "AddTask", "Home")</li>
                     }
-                    @if (ViewBag.UserHome.AdminRole == true && (ViewBag.UserHome.Position != "Директор" || ViewBag.UserHome.Position != "Секретарь"))
+                    @if (ViewBag.UserHome.OtRole == true)
                     {
                         <li>@Html.ActionLink("Администрирование", "UserIndex", "AdminTools")</li>
                     }

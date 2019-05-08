@@ -12,12 +12,10 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
     {
         private readonly IUserRepository _userRepository;
         private readonly IGroupRepository _groupRepository;
-        private readonly ITaskRepository _taskRepository;
-        public AdminProvider(IUserRepository userRepository, IGroupRepository groupRepository, ITaskRepository taskRepository)
+        public AdminProvider(IUserRepository userRepository, IGroupRepository groupRepository)
         {
             _groupRepository = groupRepository;
             _userRepository = userRepository;
-            _taskRepository = taskRepository;
         }
         public bool UserAdmin(string name)
         {
@@ -45,6 +43,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                     Position = model.Position,
                     StatusUser = true,
                     AdminRole = false,
+                    OtRole = false
                 });
                 if (model.IdGroup != null)
                 {
@@ -108,6 +107,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 user.Name = model.Name;
                 user.Position = model.Position;
                 user.AdminRole = model.AdminRole;
+                user.OtRole = model.OtRole;
                 user.StatusUser = model.StatusUser;
                 _groupRepository.PerfomerClearGroup(user);
                 _groupRepository.ClearGroup(user);

@@ -32,6 +32,9 @@ namespace Slobkoll.HRM.Core.Mapping
             Map(x => x.StatusUser)
                 .Not.Nullable();
 
+            Map(x => x.OtRole)
+                .Not.Nullable();
+
             HasManyToMany(x => x.Group)
                 .Cascade.SaveUpdate()
                 .Inverse().Table("Group_User")

@@ -25,6 +25,8 @@ namespace Slobkoll.HRM.Core.Object
 
         public virtual bool StatusUser { get; set; }
 
+        public virtual bool OtRole { get; set; }
+
         private IList<Group> group;
         /// <summary>
         /// Список групп

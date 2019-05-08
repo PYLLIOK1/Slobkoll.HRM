@@ -81,7 +81,8 @@ namespace Slobkoll.HRM.Web.Controllers
                     Name = user.Name,
                     Position = user.Position,
                     AdminRole = user.AdminRole,
-                    StatusUser = user.StatusUser
+                    StatusUser = user.StatusUser,
+                    OtRole = user.OtRole
                 };
                 List<int> listGroup = new List<int>();
                 List<int> listPerfomer = new List<int>();
