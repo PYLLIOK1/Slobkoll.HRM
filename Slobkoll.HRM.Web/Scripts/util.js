@@ -3,7 +3,7 @@
     notificationhub.client.message = function (message) {
         notifSet(message);
         toastr.options = {
-            "closeButton": false,
+            "closeButton": true,
             "debug": false,
             "newestOnTop": false,
             "progressBar": false,
@@ -27,7 +27,7 @@
 function notifyMe(message) {
     var notification = new Notification(message, {
         tag : "ache-mail",
-    body : "Проверь скорее!"
+        body : "Проверь скорее!"
 });
 }
 

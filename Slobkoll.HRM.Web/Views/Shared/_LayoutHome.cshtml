@@ -26,14 +26,15 @@
                     {
                         <li>@Html.ActionLink("Создать задачу", "AddTask", "Home")</li>
                     }
-                    @if (ViewBag.UserHome.OtRole == true)
+                    @if (ViewBag.UserHome.AdminRole == true)
                     {
                         <li>@Html.ActionLink("Администрирование", "UserIndex", "AdminTools")</li>
                     }
-                    @if (ViewBag.UserHome.AdminRole == true)
+                    @if (ViewBag.UserHome.OtRole == true)
                     {
-                        <li>@Html.ActionLink("Отчеты", "Reports", "Home")</li>
+                        <li>@Html.ActionLink("Отчеты", "Reports", "Report")</li>
                     }
+                    <li>@Html.ActionLink("Помощь", "Index", "Help")</li>
                     <li>@Html.ActionLink("Выйти из системы", "Logoff", "Account")</li>
                 </ul>
             </div>

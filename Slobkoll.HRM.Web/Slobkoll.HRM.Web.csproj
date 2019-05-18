@@ -169,7 +169,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminToolsController.cs" />
+    <Compile Include="Controllers\HelpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -219,6 +221,7 @@
     <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile3.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile4.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile5.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -281,8 +284,10 @@
     <Content Include="Views\Home\TaskArchive.cshtml" />
     <Content Include="Views\Home\TaskArchiveObserver.cshtml" />
     <Content Include="Views\Home\EditTask.cshtml" />
-    <Content Include="Views\Home\Reports.cshtml" />
-    <Content Include="Views\Home\ReportsSearch.cshtml" />
+    <Content Include="Views\Report\Reports.cshtml" />
+    <Content Include="Views\Report\ReportsSearch.cshtml" />
+    <Content Include="Views\Help\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutHelp.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

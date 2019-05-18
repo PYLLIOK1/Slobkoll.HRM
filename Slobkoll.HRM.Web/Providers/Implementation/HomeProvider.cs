@@ -117,7 +117,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 };
                 _subTaskRepository.SubTaskCreate(subTask);
                 string message = "У вас новая задача";
-                SendMessage(subTask.Performer.Login, message);
+                SendMessage(subTask.Performer.Login, message, subTask.TaskId.Id, "TaskPerfomer");
             }
         }
 
@@ -157,7 +157,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                 };
                 _subTaskModRepository.AddSubTaskMod(mod);
                 string message = "Задача №" + item.TaskId.Id + " изменена";
-                SendMessage(item.Performer.Login, message);
+                SendMessage(item.Performer.Login, message, item.TaskId.Id, "TaskPerfomer");
             }
         }
 
@@ -184,7 +184,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             };
             _subTaskModRepository.AddSubTaskMod(mod);
             string message = "Задача №" + model.TaskId.Id + " ждет вашей проверки";
-            SendMessage(model.TaskId.Author.Login, message);
+            SendMessage(model.TaskId.Author.Login, message, model.TaskId.Id, "TaskAuthor");
         }
 
         public void SubTaskStatusEdit(int Id, string status)
@@ -201,7 +201,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             };
             _subTaskModRepository.AddSubTaskMod(mod);
             string message = "Автор изменил статус задачи №" + model.TaskId.Id;
-            SendMessage(model.Performer.Login, message);
+            SendMessage(model.Performer.Login, message, model.TaskId.Id, "TaskPerfomer");
         }
 
         public Task CheckAuthor(Task task)
@@ -222,7 +222,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                         };
                         _subTaskModRepository.AddSubTaskMod(mod);
                         string message = "Автор проверил задачи №" + item.TaskId.Id;
-                        SendMessage(item.Performer.Login, message);
+                        SendMessage(item.Performer.Login, message, item.TaskId.Id, "TaskPerfomer");
                     }
                     _subTaskRepository.SubTaskEdit(item);
                 }
@@ -246,7 +246,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
                     };
                     _subTaskModRepository.AddSubTaskMod(mod);
                     string message = subTask.Performer.Name + " проверил задачи №" + subTask.TaskId.Id;
-                    SendMessage(subTask.TaskId.Author.Login, message);
+                    SendMessage(subTask.TaskId.Author.Login, message, subTask.TaskId.Id, "TaskAuthor");
                 }
                 _subTaskRepository.SubTaskEdit(subTask);
             }
@@ -406,7 +406,7 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             };
             _commentRepository.AddComment(comment);
             string message = "Автор добавил комментарий к задачи №" + SubTask.TaskId.Id;
-            SendMessage(SubTask.Performer.Login, message);
+            SendMessage(SubTask.Performer.Login, message, SubTask.TaskId.Id, "TaskPerfomer");
         }
         public void AddCommentPerfomer(User Author, int idSubTask, string CommentText)
         {
@@ -422,16 +422,16 @@ namespace Slobkoll.HRM.Web.Providers.Implementation
             };
             _commentRepository.AddComment(comment);
             string message = SubTask.Performer.Name + " добавил комментарий к задачи №" + SubTask.TaskId.Id;
-            SendMessage(SubTask.TaskId.Author.Login, message);
+            SendMessage(SubTask.TaskId.Author.Login, message, SubTask.TaskId.Id, "TaskAuthor");
         }
 
 
-        private void SendMessage(string name, string text)
+        private void SendMessage(string name, string text, int id, string view)
         {
             var context = Microsoft.AspNet.SignalR.GlobalHost.ConnectionManager.GetHubContext<MyHub>();
             foreach (var connectionId in MyHub._connections.GetConnections(name))
             {
-                context.Clients.Client(connectionId).Message(text);
+                context.Clients.Client(connectionId).Message(text, id, view);
             }
         }
         public List<Task> ListTaskToDate(DateTime datetime1, DateTime datetime2)
