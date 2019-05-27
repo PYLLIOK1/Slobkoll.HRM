@@ -1,12 +1,11 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title – Slobkoll HRM</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body style="height:100vh;">
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -20,25 +19,108 @@
                 @Html.ActionLink("Slobkoll HRM", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Основы", "Index", "Help")</li>
+                    @if (ViewBag.UserHome.UserPerformer.Count > 0 || ViewBag.UserHome.GroupPerformer.Count > 0)
+                    {
+                        <li>@Html.ActionLink("Помощь с созданием и редактирование задач", "TaskCreatEdit", "Help")</li>
+                    }
+                    @if (ViewBag.UserHome.AdminRole == true)
+                    {
+                        <li>@Html.ActionLink("Администрирование", "Admin", "Help")</li>
+                    }
+                    @if (ViewBag.UserHome.OtRole == true)
+                    {
+                        <li>@Html.ActionLink("Отчеты", "Othet", "Help")</li>
+                    }
+                </ul>
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container content">
         @RenderBody()
         <hr />
     </div>
 
-    <footer class="container">
+    <footer class="container footer">
         <p>
             &copy; @DateTime.Now.Year - КОГПОБУ "Слободской колледж
             педагогики и социальных отношений". Все права защищены.
         </p>
     </footer>
-
+    @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/Myscripts")
     @RenderSection("scripts", required: false)
 </body>
 </html>
+<style>
+    .content {
+        overflow-y: scroll;
+        height: 300px;
+    }
+    img {
+  display: inline-block;
+  height: auto;
+  max-width: 700px;
+}
+    body {
+	margin:0;
+}
+
+.popup {
+	position: absolute;
+	height:100%;
+	width:100%;
+	top:0;
+	left:0;
+	display:none;
+	text-align:center;
+}
+
+.popup_bg {
+	background:rgba(0,0,0,0.4);
+	position:absolute;
+	z-index:1;
+	height:100%;
+	width:100%;
+}
+
+
+.popup_img {
+	position: relative;
+	margin:0 auto;
+	z-index:2;
+	max-height:94%;
+	max-width:94%;
+	margin:8% 0 0 0;
+}
+</style>
+<script>
+    $(document).ready(function() {	
+	$(".image").click(function(){	
+	  	var img = $(this);	
+		var src = img.attr('src'); 
+		$("body").append("<div class='popup'>"+ 
+						 "<div class='popup_bg'></div>"+ 
+						 "<img src='"+src+"' class='popup_img' />"+ 
+						 "</div>"); 
+		$(".popup").fadeIn(800); // 
+		$(".popup_bg").click(function(){	  
+			$(".popup").fadeOut(800);	
+			setTimeout(function() {	
+			  $(".popup").remove(); 
+			}, 800);
+		});
+	});
+});
+    $(window).resize(function () {
+        var a = $(window).height();
+        var b = $(".navbar").outerHeight(true);
+        var c = $(".footer").outerHeight(true);
+        var d = a - b - c;
+        $(".content").height(d);
+    });
+    $(window).resize();
+</script>

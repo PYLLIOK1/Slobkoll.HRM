@@ -84,7 +84,7 @@
             var date2 = $('#search1').val();
             date1 = encodeURIComponent(date1);
             date2 = encodeURIComponent(date2);
-            $('#results').load('@Url.Action("ReportsSearch", "Home")?date1=' + date1 + '&date2=' + date2);
+            $('#results').load('@Url.Action("ReportsSearch", "Report")?date1=' + date1 + '&date2=' + date2);
         })
     });
     $(window).resize(function () {

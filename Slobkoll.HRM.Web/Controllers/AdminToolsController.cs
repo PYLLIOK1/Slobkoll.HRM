@@ -193,13 +193,20 @@ namespace Slobkoll.HRM.Web.Controllers
         public ActionResult GroupCreate(GroupCreateModel model)
         {
             if (ModelState.IsValid)
-                if (_adminProvider.GroupCreate(model))
+                if (model.GroupUser != null)
                 {
-                    return RedirectToAction("GroupIndex");
+                    if (_adminProvider.GroupCreate(model))
+                    {
+                        return RedirectToAction("GroupIndex");
+                    }
+                    else
+                    {
+                        return RedirectToAction("GroupCreate");
+                    }
                 }
                 else
                 {
-                    return RedirectToAction("GroupCreate");
+                    return Content("<script language='javascript' type='text/javascript'>alert('Выберите хотя бы одного пользователя');</script>");
                 }
             else
             {
@@ -233,13 +240,20 @@ namespace Slobkoll.HRM.Web.Controllers
         [HttpPost]
         public ActionResult GroupEdit(GroupEditModel model)
         {
-            if (ModelState.IsValid && _adminProvider.GroupEdit(model))
+            if(model.GroupUser != null)
             {
-                return RedirectToAction("GroupIndex");
+                if (ModelState.IsValid && _adminProvider.GroupEdit(model))
+                {
+                    return RedirectToAction("GroupIndex");
+                }
+                else
+                {
+                    return RedirectToAction("GroupEdit", model.Id);
+                }
             }
             else
             {
-                return RedirectToAction("GroupEdit", model.Id);
+                return Content("<script language='javascript' type='text/javascript'>alert('Выберите хотя бы одного пользователя');</script>");
             }
         }
         [HttpGet]

@@ -208,6 +208,20 @@
     <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\Главное окно администрирования.png" />
+    <Content Include="Content\Главное окно.png" />
+    <Content Include="Content\группы.png" />
+    <Content Include="Content\детали о группе.png" />
+    <Content Include="Content\детали о пользователе.png" />
+    <Content Include="Content\Отчет.png" />
+    <Content Include="Content\Переход на редактирование.png" />
+    <Content Include="Content\Работа с задачей.png" />
+    <Content Include="Content\редактирование групп.png" />
+    <Content Include="Content\редактирование пользователя.png" />
+    <Content Include="Content\Редактирование.png" />
+    <Content Include="Content\создание групп.png" />
+    <Content Include="Content\Создание задач.png" />
+    <Content Include="Content\создание пользователя.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -288,6 +302,9 @@
     <Content Include="Views\Report\ReportsSearch.cshtml" />
     <Content Include="Views\Help\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutHelp.cshtml" />
+    <Content Include="Views\Help\TaskCreatEdit.cshtml" />
+    <Content Include="Views\Help\Othet.cshtml" />
+    <Content Include="Views\Help\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

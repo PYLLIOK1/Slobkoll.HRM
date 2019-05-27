@@ -81,7 +81,7 @@
                     @Html.LabelFor(model => model.AdminRole, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <div class="checkbox">
-                            @Html.EditorFor(model => model.AdminRole)
+                            @Html.EditorFor(model => model.AdminRole, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.AdminRole, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                     @Html.LabelFor(model => model.StatusUser, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <div class="checkbox">
-                            @Html.EditorFor(model => model.StatusUser)
+                            @Html.EditorFor(model => model.StatusUser, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.StatusUser, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                     @Html.LabelFor(model => model.OtRole, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <div class="checkbox">
-                            @Html.EditorFor(model => model.OtRole)
+                            @Html.EditorFor(model => model.OtRole, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.OtRole, "", new { @class = "text-danger" })
                         </div>
                     </div>

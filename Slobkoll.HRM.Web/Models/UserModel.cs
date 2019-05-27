@@ -85,7 +85,7 @@ namespace Slobkoll.HRM.Web.Models
         [Display(Name = "Должность*")]
         public string Position { get; set; }
 
-        [Display(Name = "Админ права")]
+        [Display(Name = "Администрирование")]
         public bool AdminRole { get; set; }
 
         [Display(Name = "Отчетность")]

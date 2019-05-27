@@ -21,7 +21,7 @@ namespace Slobkoll.HRM.Web.Models
         [Required(ErrorMessage = "выберете дату")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy hh':'mm }", ApplyFormatInEditMode = true )]
-        [Display(Name = "Дата Окончиния")]
+        [Display(Name = "Дата окончиния")]
         public DateTime DateTime { get; set; }
 
         [Display(Name = "Список подчинненных")]
@@ -47,7 +47,7 @@ namespace Slobkoll.HRM.Web.Models
         [Required(ErrorMessage = "выберете дату")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(DataFormatString = "{0:dd'.'MM'.'yyyy hh':'mm }", ApplyFormatInEditMode = true)]
-        [Display(Name = "Дата Окончиния")]
+        [Display(Name = "Дата окончиния")]
         public DateTime DateTime { get; set; }
 
         public HttpPostedFileBase File { get; set; }
